@@ -1,6 +1,8 @@
 {% extends 'base_generic.html' %}
 
 {% block headstyle %}
+    {% load socialaccount %}
+    {% providers_media_js %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
         <style>
             .header {
@@ -37,9 +39,10 @@
             js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.11&appId=186028088657155&autoLogAppEvents=1';
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
-    <div class="fb-button-wrap">
-        <a href="/accounts/facebook/login/?process=login"><div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with"
-                data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div></a>
-    </div>
+    <a href="{% provider_login_url "facebook" method="js_sdk" %}">Login Button image</a>
+    <a href="{% provider_login_url "facebook" method="js_sdk" %}" class="btn btn-block btn-social btn-facebook" style="background-color:#3b5998;text-align:center">
+        <span class="fa fa-facebook"></span>
+        Sign in with Facebook
+    </a>
 
 {% endblock %}
