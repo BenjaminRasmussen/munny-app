@@ -1,6 +1,9 @@
 from __future__ import unicode_literals
+import math
 import uuid
+from django.db import models
 from django.contrib.auth.models import User
+from django.db import IntegrityError
 from django.db import models
 # Create your models here.
 from django.dispatch import receiver
@@ -18,6 +21,8 @@ class Munnygroup(models.Model):
 
 
 class User(models.Model):
+    # TODO ADD PICTURE URL
+    id = models.AutoField(auto_created=True, primary_key=True, unique=True, serialize=False, verbose_name='ID')
     Firstname = models.CharField(help_text="First name, (only 1, no spaces!)", max_length=20)
     Lastname = models.CharField(help_text="Last name, (only 1, no spaces!)", max_length=20)
 
@@ -27,9 +32,9 @@ class User(models.Model):
     rolegroup_primary = models.ForeignKey(Munnygroup, related_name="rolegroup_secondary", default="", )
     rolegroup_secondary = models.ForeignKey(Munnygroup, related_name="rolegroup_primary", default="", )
 
-    MUNID = models.UUIDField(default=uuid.uuid4, editable=False, related_name="id",)
+    MUNID = models.CharField(help_text="This is the google docs jotform id thingy", max_length=20)
 
-    list_display = ('MUNID', 'Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary',)
+    list_display = ('id', 'MUNID', 'Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary',)
     fields = ('Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary',)
 
     def __str__(self):
