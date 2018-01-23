@@ -2,70 +2,33 @@
 
 {% block headstyle %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-{% endblock %}
+        <style>
+            .header {
+                font-size: 16px;
+            }
+
+            .header .logoTop {
+                margin-bottom: -112px;
+            }
+
+            .header .logoBottom {
+                margin-top: -114px;
+            }
+        </style>
+    {% endblock %}
+
+    {% block header %}
+        <h1>LOGIN</h1>
+
+    {% endblock %}
 
 {% block content %}
-    <h2>Login</h2>
-    <div id="fb-root"></div>
-    <script>(function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.11&appId=186028088657155&autoLogAppEvents=1';
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-
-    <div class="fb-login-button" data-width=""></div>
-    <div class="facebook-content-wrap">
-        <h1>Friend Finder processing page</h1>
-        <p>To enter the friend finder app we require your social media consent. This information will be stored on our
-            secure servers. It will only be given to other users if you add them. It will be kept private to users on
-            whom
-            you swipe but do not add. Fill out the form below and we will unlock this feature. Whatsapp number is
-            optional</p>
-
-        <p> Optionally you can add your phone number and then login with facebook.</p>
-
-        <div class="facebook-form-class" style="margin-left: 15%; margin-right: 15%;">
-            <form action="" method="POST">
-                <label>
-                    <textarea style="height: 45px;"></textarea>
-                </label>
-                <input class="button" type="submit" value="Submit">
-            </form>
-        </div>
-        <br>
-        <a href="/accounts/facebook/login/?process=login"><img style="width: 200px;" src="/src/static/images/facebookthingy.png" href="/accounts/facebook/login/?process=login"
-             class="socialaccount_provider facebook"></a>
-
-        <script>
-            function facebookLogin() {
-                FB.login(function (response) {
-                        var token = response.authResponse.accessToken;
-                        var uid = response.authResponse.userID;
-                        if (response.authResponse) {
-                            FB.api(
-                                '/me',
-                                'GET',
-                                {"fields": "id,name,friends,picture"},
-                                function (response) {
-                                    console.log(response);
-                                }
-                            );
-
-                            FB.api('/' + uid, 'get', {access_token: token}, function (response) {
-                                console.log(response);
-                            });
-                        }
-                    },
-                    {scope: 'public_profile'}
-                );
-            }
-        </script>
-
-
-
+    <h1>Friend Finder processing page</h1>
+    <p>To enter the friend finder app we require your social media consent. This information will be stored on our
+        secure servers. It will only be given to other users if you add them. It will be kept private to users on
+        whom
+        you swipe but do not add. Fill out the form below and we will unlock this feature. Whatsapp number is
+        optional</p>
         <div id="fb-root"></div>
         <script>(function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
@@ -74,11 +37,9 @@
             js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.11&appId=186028088657155&autoLogAppEvents=1';
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
+    <div class="fb-button-wrap">
+        <a href="/accounts/facebook/login/?process=login"><div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with"
+                data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div></a>
+    </div>
 
-        <div class="fb-login-button" data-width=""></div>
-
-        <div class="fb-button-wrap">
-            <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with"
-                 data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
-        </div>
 {% endblock %}
