@@ -157,7 +157,6 @@ SOCIALACCOUNT_PROVIDERS = {
             'link',
             'gender',
             'updated_time',
-            'photo',
         ],
         'EXCHANGE_TOKEN': True,
         'LOCALE_FUNC': 'path.to.callable',
@@ -167,7 +166,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL="/"
+
 
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url
