@@ -87,8 +87,7 @@ def friendfinderview(request):
         Username = "NOT LOGGED IN"
 
     # GET ALL FB ACCOUNTS
-    provider = providers.registry.by_id(FacebookProvider.id)
-    socaccs = SocialAccount.objects.filter(provider=provider).all()
+    socaccs = SocialAccount.objects.all()
     return render(
         request,
         'visual.html',
