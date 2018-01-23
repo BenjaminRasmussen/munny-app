@@ -9,7 +9,6 @@ from django.db import models
 from django.dispatch import receiver
 
 
-
 class Munnygroup(models.Model):
     groupname = models.CharField(help_text="Group name (exec or debate)", max_length=25)
 
@@ -30,7 +29,6 @@ class User(models.Model):
     # TODO Scrap groups for choices and groups
     rolegroup_primary = models.ForeignKey(Munnygroup, related_name="rolegroup_secondary", default="", )
     rolegroup_secondary = models.ForeignKey(Munnygroup, related_name="rolegroup_primary", default="", )
-
 
     list_display = ('id', 'jotformspace', 'Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary',)
     fields = ('Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary', 'jotformspace',)
@@ -96,12 +94,10 @@ def execute_after_save(sender, instance, created, *args, **kwargs):
     if created:
         pass
         # TODO Add clause such that not everyone is displayed as a speaker but everyone is a voter.
+
+
 """
         record = fruitPerson(userobject=User.objects.last())
         record.save()
 """
 # TODO Make an @receiver that scans for a 'complementary' tinder match every time one is created.
-
-
-
-
