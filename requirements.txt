@@ -2,16 +2,10 @@ dj-database-url==0.4.2
 Django==1.10.6
 django-allauth==0.34.0
 django-facebook==6.0.3
-django-oauth-toolkit==1.0.0
 django-rest-framework-social-oauth2==1.0.8
-djangorestframework==3.7.7
-djangorestframework-jwt==1.11.0
 facebook-sdk==2.0.0
 gunicorn==19.6.0
 Jinja2==2.9.6
 oauthlib==2.0.2
-python-social-auth==0.3.6
-social-auth-app-django==1.1.0
-social-auth-core==1.6.0
 whitenoise==3.3.0
 psycopg2
