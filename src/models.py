@@ -9,6 +9,7 @@ from django.db import models
 from django.dispatch import receiver
 
 
+
 class Munnygroup(models.Model):
     groupname = models.CharField(help_text="Group name (exec or debate)", max_length=25)
 
@@ -21,20 +22,23 @@ class Munnygroup(models.Model):
 
 class User(models.Model):
     # TODO ADD PICTURE URL
+    id = models.AutoField(auto_created=True, primary_key=True, unique=True, serialize=False, verbose_name='ID')
     Firstname = models.CharField(help_text="First name, (only 1, no spaces!)", max_length=20)
     Lastname = models.CharField(help_text="Last name, (only 1, no spaces!)", max_length=20)
 
-    jotformspace = models.CharField(help_text="This is the google docs jotform id thingy", max_length=20)
+    # FACEBOOKURL = models.
 
     # TODO Scrap groups for choices and groups
     rolegroup_primary = models.ForeignKey(Munnygroup, related_name="rolegroup_secondary", default="", )
     rolegroup_secondary = models.ForeignKey(Munnygroup, related_name="rolegroup_primary", default="", )
 
-    list_display = ('id', 'jotformspace', 'Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary',)
-    fields = ('Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary', 'jotformspace',)
+    MUNID = models.CharField(help_text="This is the google docs jotform id thingy", max_length=20)
+
+    list_display = ('id', 'MUNID', 'Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary',)
+    fields = ('Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary', 'MUNID')
 
     def __str__(self):
-        return str(self.id)
+        return str(self.MUNID)
 
     def getfullname(self):
         return self.Firstname + " " + self.Lastname
@@ -89,32 +93,16 @@ class fruitVote(models.Model):
         a_record.save()
 
 
-class ticket(models.Model):
-    title = models.CharField(max_length=35, help_text="Title of the ticket")
-    writer = models.ForeignKey(User, default="")
-    text = models.TextField(help_text="Ticket bodytext")
-
-    def __str__(self):
-        return str(self.title+str(self.id))
-
-
-class ticketreply(models.Model):
-    motherticket = models.ForeignKey(User, default=ticket.objects.last())
-    text = models.TextField(help_text="Ticket reply bodytext")
-
-    def __str__(self):
-        return self.motherticket+str(self.id)
-
-
 @receiver(models.signals.post_save, sender=User)
 def execute_after_save(sender, instance, created, *args, **kwargs):
     if created:
-        pass
         # TODO Add clause such that not everyone is displayed as a speaker but everyone is a voter.
 
+        record = fruitPerson(userobject=User.objects.last())
+        record.save()
 
-        """
-                record = fruitPerson(userobject=User.objects.last())
-                record.save()
-        """
-        # TODO Make an @receiver that scans for a 'complementary' tinder match every time one is created.
+# TODO Make an @receiver that scans for a 'complementary' tinder match every time one is created.
+
+
+
+

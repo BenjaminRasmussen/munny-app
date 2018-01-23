@@ -6,7 +6,7 @@ from django.shortcuts import render
 
 # Create your views here.
 
-from src.models import User, fruitPerson, ticket, ticketreply
+from src.models import User, fruitPerson
 
 
 def index(request):
@@ -64,15 +64,12 @@ def ticketview(request):
     userid = request.session.get('munnyid', 'NOT LOGGED IN')
     if not userid == "NOT LOGGED IN":
         Username = User.objects.get(MUNID=userid).getfullname()
-        # Tickets
-        tickets = ticket.objects.all()
-        replies = ticketreply.objects.all()
+
         return render(
             request,
             'ticketwriter.html',
             context={"user_name": Username,
-                     "tickets": tickets,
-                     "ticketreplies": replies},
+                     },
         )
     else:
         return HttpResponseRedirect('/missingloginpage/')

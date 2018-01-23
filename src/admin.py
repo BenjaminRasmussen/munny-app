@@ -1,5 +1,7 @@
 from django.contrib import admin
 from src.models import User, Munnygroup, fruitPerson, fruitVote
+
+
 # Register your models here.
 
 
