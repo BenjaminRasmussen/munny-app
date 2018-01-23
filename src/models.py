@@ -18,7 +18,6 @@ class Munnygroup(models.Model):
 
 
 class User(models.Model):
-    # TODO ADD PICTURE URL
     Firstname = models.CharField(help_text="First name, (only 1, no spaces!)", max_length=20)
     Lastname = models.CharField(help_text="Last name, (only 1, no spaces!)", max_length=20)
 
@@ -28,7 +27,7 @@ class User(models.Model):
     rolegroup_primary = models.ForeignKey(Munnygroup, related_name="rolegroup_secondary", default="", )
     rolegroup_secondary = models.ForeignKey(Munnygroup, related_name="rolegroup_primary", default="", )
 
-    MUNID = models.UUIDField(default=uuid.uuid4, editable=False)
+    MUNID = models.UUIDField(default=uuid.uuid4, editable=False, related_name="id",)
 
     list_display = ('MUNID', 'Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary',)
     fields = ('Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary',)
