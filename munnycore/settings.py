@@ -27,7 +27,7 @@ SECRET_KEY = 'i-@ldagvkj$^zm*m35^ofpaki$bhf2b&rw9sy%(_&4f7+o7(td'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["salty-stream-92059.herokuapp.com"]
+ALLOWED_HOSTS = ["salty-stream-92059.herokuapp.com", "127.0.0.1:8000", "127.0.0.1"]
 
 # Application definition
 
