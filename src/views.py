@@ -10,18 +10,11 @@ from src.models import User, fruitPerson
 
 
 def index(request):
-    userid = request.session.get('munnyid', 'NOT LOGGED IN')
-    if not userid == "NOT LOGGED IN":
-        Username = User.objects.get(MUNID=userid).getfullname()
-    else:
-        Username = "NOT LOGGED IN"
+
     return render(
         request,
         'index.html',
-        context={"user_list": User.objects.all(),
-                 "user_id": userid,
-                 "user_name": Username
-                 }
+        context={"user_name": "user_name"}
     )
 
 
