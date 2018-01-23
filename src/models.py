@@ -45,7 +45,7 @@ class User(models.Model):
 
 
 class fruitPerson(models.Model):
-    userobject = models.ForeignKey(User, default="")
+    userobject = models.ForeignKey(User, User.objects.last())
     score = models.IntegerField(help_text="Display the score for the user linked",
                                 default=0)
     # Scrap the fruitscore idea. let score be a request context that is returned by a function in this class.
