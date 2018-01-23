@@ -16,4 +16,5 @@ urlpatterns = [
     url(r'^missingloginpage/', views.missingloginpage, name="missingloginpage"),
     url(r'^friendfinder/', views.friendfinderview, name="friendfinderview"),
 
+
 ]

@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^missingloginpage/', views.missingloginpage, name="missingloginpage"),
     url(r'^accounts/', include('allauth.urls')),
+
 ]

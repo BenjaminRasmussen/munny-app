@@ -5,6 +5,7 @@
       <option name="ignoredIdentifiers">
         <list>
           <option value="src.views.request" />
+          <option value="allauth.socialaccount.models.Social_accounts" />
         </list>
       </option>
     </inspection_tool>

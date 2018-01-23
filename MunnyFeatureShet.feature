@@ -53,3 +53,5 @@ Feature: Speakercountry, Fruitperson, user???
 
 
     href="/accounts/facebook/login/?process=login"
+
+    https://graph.facebook.com/{facebookId}/picture?type=large&w‌​idth=720&height=720

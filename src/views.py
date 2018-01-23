@@ -1,16 +1,16 @@
 from allauth.socialaccount import providers
 from allauth.socialaccount.providers.facebook.provider import FacebookProvider, GRAPH_API_URL
+from django.contrib.auth.decorators import login_required
 from django.contrib.sites import requests
-from django.http import HttpResponseRedirect, HttpRequest, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
-
-# Create your views here.
 
 from src.models import User, fruitPerson
 
 
-def index(request):
+# Create your views here.
 
+def index(request):
     return render(
         request,
         'index.html',
@@ -76,6 +76,7 @@ def sessionsview(request):
     return HttpResponseRedirect('/src/')
 
 
+@login_required
 def friendfinderview(request):
     userid = request.session.get('munnyid', 'NOT LOGGED IN')
     if not userid == "NOT LOGGED IN":
@@ -87,6 +88,7 @@ def friendfinderview(request):
         'visual.html',
         context={"users": User.objects.all(),
                  "user_name": Username,
+                 "facebooks": FacebookProvider.account_class.account
                  }
     )
 
