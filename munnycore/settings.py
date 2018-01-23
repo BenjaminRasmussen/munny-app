@@ -142,7 +142,7 @@ FACEBOOK_APP_SECRET = str('e6f5b9c45de16fb3e9f572a8a52c724d')
 SOCIALACCOUNT_PROVIDERS = {
     'facebook': {
         'METHOD': 'oauth2',
-        'SCOPE': ['email', 'public_profile', 'user_friends'],
+        'SCOPE': ['email', 'public_profile', 'user_friends', 'picture'],
         'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
         'INIT_PARAMS': {'cookie': True},
         'FIELDS': [
