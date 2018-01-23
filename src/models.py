@@ -25,16 +25,15 @@ class User(models.Model):
     Firstname = models.CharField(help_text="First name, (only 1, no spaces!)", max_length=20)
     Lastname = models.CharField(help_text="Last name, (only 1, no spaces!)", max_length=20)
 
-    # FACEBOOKURL = models.
+    jotformspace = models.CharField(help_text="This is the google docs jotform id thingy", max_length=20)
 
     # TODO Scrap groups for choices and groups
     rolegroup_primary = models.ForeignKey(Munnygroup, related_name="rolegroup_secondary", default="", )
     rolegroup_secondary = models.ForeignKey(Munnygroup, related_name="rolegroup_primary", default="", )
 
-    jotformspace = models.CharField(help_text="This is the google docs jotform id thingy", max_length=20)
 
     list_display = ('id', 'jotformspace', 'Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary',)
-    fields = ('Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary', 'jotformspace')
+    fields = ('Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary', 'jotformspace',)
 
     def __str__(self):
         return str(self.id)
@@ -44,7 +43,7 @@ class User(models.Model):
 
 
 class fruitPerson(models.Model):
-    userobject = models.ForeignKey(User, User.objects.last())
+    userobject = models.ForeignKey(User, default="")
     score = models.IntegerField(help_text="Display the score for the user linked",
                                 default=0)
     # Scrap the fruitscore idea. let score be a request context that is returned by a function in this class.
@@ -95,11 +94,12 @@ class fruitVote(models.Model):
 @receiver(models.signals.post_save, sender=User)
 def execute_after_save(sender, instance, created, *args, **kwargs):
     if created:
+        pass
         # TODO Add clause such that not everyone is displayed as a speaker but everyone is a voter.
-
+"""
         record = fruitPerson(userobject=User.objects.last())
         record.save()
-
+"""
 # TODO Make an @receiver that scans for a 'complementary' tinder match every time one is created.
 
 
