@@ -35,7 +35,7 @@ class User(models.Model):
     MUNID = models.CharField(help_text="This is the google docs jotform id thingy", max_length=20)
 
     list_display = ('id', 'MUNID', 'Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary',)
-    fields = ('Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary',)
+    fields = ('Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary', 'MUNID')
 
     def __str__(self):
         return str(self.MUNID)
