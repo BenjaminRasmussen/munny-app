@@ -1,0 +1,57 @@
+{% extends "base_generic.html" %}
+
+
+{% block headstyle %}
+    <!--suppress ALL -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <link rel="stylesheet" href="https://code.ionicframework.com/contrib/ionic-contrib-tinder-cards/ionic.tdcards.css">
+    <title>Ionic Swipe Down</title>
+    <link href="/src/static/js/tinder.css" rel="stylesheet">
+    <script src="/src/static/js/Hammer.min.js"></script>
+    <script src="https://hammerjs.github.io/dist/hammer.js" type="text/javascript"></script>
+
+
+{% endblock %}
+
+{% block header %}
+    <h1 style="font-family: 'Cambo', serif; line-height: 1 ">FRIEND <br> FINDER</h1>
+{% endblock %}
+
+{% block content %}
+    <script type="text/javascript">
+        var myElement = document.getElementById('myElement');
+        var list = document.getElementById("list");
+        // create a simple instance
+        // by default, it only adds horizontal recognizers
+        var mc = new Hammer(myElement);
+
+        // let the pan gesture support all directions.
+        // this will block the vertical scrolling on a touch-device while on the element
+        mc.get('pan').set({direction: Hammer.DIRECTION_ALL});
+        mc.get('swipe').set({direction: Hammer.DIRECTION_VERTICAL});
+
+        // listen to events...
+        mc.on("panleft panright panup pandown tap press", function (ev) {
+            console.log("Hello world");
+        });
+    </script>
+    <div id="myElement"></div>
+    <div class="td-cards">
+
+        <ul id="list" class="CardList">
+            {% for cards in users %}
+                <li>
+                    <div class="td-card">
+                        <div class="image"><img src="/src/static/images/munnytemplogo.png"></div>
+                        <div class="float-left"><p style="font-size: 18px;"><em>{{ cards.getfullname }}</em></p>
+                            <br> {{ cards.rolegroup_primary }}</div>
+                        <div class="float-right"><br> {{ cards.rolegroup_secondary }}</div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}
+

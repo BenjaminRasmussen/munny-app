@@ -1,0 +1,177 @@
+{% extends "base_generic.html" %}
+
+{% block headstyle %}
+    <style>
+        .header {
+            font-size: 13px;
+        }
+
+        .header .logoTop {
+            margin-bottom: -103px;
+        }
+
+        .header .logoBottom {
+            margin-top: -106px;
+        }
+
+        /* The switch - the box around the slider */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        /* Hide default HTML checkbox */
+        .switch input {
+            display: none;
+        }
+
+        /* The slider */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked + .slider {
+            background-color: #FFB757 !important;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px rgba(19, 191, 17, 1);
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+        .iosbutton {
+            float: right;
+        }
+
+        .button {
+            background-color: white;
+            border: 2px solid #FFB757;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            width: 100%;
+        }
+
+        .button:hover {
+            background-color: #FFB757; /* Green */
+            color: white;
+            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+
+        }
+
+        table {
+            width: 99%;
+            table-layout: auto;
+
+        }
+
+        table, th, td, tr {
+            border: 0;
+            border-collapse: collapse;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #ccc;
+            border-collapse: collapse;
+        }
+
+        table tr:nth-child(even) .slider.round {
+            box-shadow: 0 16px 326px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
+            background-color: #666666;
+        }
+
+    </style>
+{% endblock %}
+
+
+{% block header %}
+    <h1>FRUITFUL</h1>
+{% endblock %}
+
+{% block content %}
+    <h1 style="text-align: center;">Fruitful form for voting</h1>
+    <p>Rules are as follows:.... <br></p>
+    <div class="fruitform" style="padding: 5px;">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <table>
+                <tr>
+                    <th>Flag</th>
+                    <th>Country</th>
+                    <th style="text-align: right">Fruitful?
+                    </th>
+                </tr>
+                <tr style="background-color: white">
+                    <td></td>
+                    <td><br></td>
+                    <td></td>
+                </tr>
+
+                {% for person in fruitpersons %}
+                    <tr>
+                        <td>
+                            <img src="/src/static/images/munnytemplogo.png">
+                        </td>
+                        <td>
+                            <label> {{ person.userobject.getfullname }}</label>
+                        </td>
+                        <td>
+                            <div class="iosbutton">
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <input class="button" type="submit" value="Submit">
+        </form>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base_generic.html" %}
+
+{% block headstyle %}
+    <style>
+        .header {
+            font-size: 10px;
+            color: red;
+        }
+
+        .header .logoTop {
+            margin-bottom: -100px;
+        }
+
+        .header .logoBottom {
+            margin-top: -102px;
+        }
+    </style>
+{% endblock %}
+
+{% block header %}
+    <h1>ERROR PAGE</h1>
+{% endblock %}
+
+{% block content %}
+    <style>
+        .content{
+            background-color: #FF9D19;
+            text-align: center;
+        }
+
+    </style>
+    <h1> !!!ERROR ENCOUNTERED!!! <br> PLEASE USE YOUR QR CODE BADGE TO LOG IN</h1>
+    <p> Due to technical reasons access to this page is limited to users who login using our MUNNY-ID badge by scanning the code with your phone's native QR scanner (camera).
+    If you have any trouble with your QR code please consult the secretariat for more help. </p>
+{% endblock %}

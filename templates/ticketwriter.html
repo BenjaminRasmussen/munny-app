@@ -1,0 +1,33 @@
+{% extends "base_generic.html" %}
+
+
+{% block headstyle %}
+    <style>
+        .header{
+            font-size: 14px;
+        }
+        .header .logoTop{
+            margin-bottom: -108px;
+        }
+        .header .logoBottom{
+            margin-top: -110px;
+        }
+    </style>
+{% endblock  %}
+
+
+{% block header %}
+    <h1>SUPPORT</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="form-container">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <textarea  class="textarea" id="besked" type="text" name="besked" value="{{ besked }}" placeholder="Skriv endelig lokation og andre vigtige info!" style="margin-bottom: 25px "></textarea>
+            <br>
+            <input class="button" type="submit" value="Submit" >
+        </form>
+    </div>
+{% endblock %}

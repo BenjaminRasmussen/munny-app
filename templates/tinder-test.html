@@ -1,0 +1,139 @@
+{% extends "base_generic.html" %}
+
+
+{% block headstyle %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <link rel="stylesheet" href="https://code.ionicframework.com/contrib/ionic-contrib-tinder-cards/ionic.tdcards.css">
+    <title>Ionic Swipe Down</title>
+    <link href="/src/static/js/tinder.css" rel="stylesheet">
+    <link href="//code.ionicframework.com/1.0.0-beta.13/css/ionic.css" rel="stylesheet">
+    <script src="https://code.ionicframework.com/collide/0.0.4/collide.js"></script>
+    <script src="//code.ionicframework.com/1.0.0-beta.13/js/ionic.bundle.js"></script>
+    <script src="https://code.ionicframework.com/contrib/ionic-contrib-tinder-cards/ionic.tdcards.js"></script>
+    <script src="/src/static/js/tinder.js"></script>
+    <style>
+        td-card.card-0 {
+            -webkit-transform: translate3d(0, 0px, 0);
+            transform: translate3d(0, 0px, 0);
+            top: 0px;
+            z-index: 10;
+        }
+        .credits{
+            position: absolute;
+            top: 95%; /* basically this is 0 + vertical-height of the header; adjust to taste */
+            left: 0; /* assuming you want the div to stretch across the viewport */
+            right: 0;
+            bottom: 3em; /* 0 + vertical-height of footer */
+            overflow: auto;
+        }
+
+    </style>
+    <script>
+        // Ionic Starter App, v0.9.20
+
+        // angular.module is a global place for creating, registering and retrieving Angular modules
+        // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
+        // the 2nd parameter is an array of 'requires'
+        // 'starter.services' is found in services.js
+        // 'starter.controllers' is found in controllers.js
+        angular.module('starter', ['ionic', 'ionic.contrib.ui.tinderCards'])
+
+
+            .config(function($stateProvider, $urlRouterProvider) {
+
+            })
+
+            .directive('noScroll', function($document) {
+
+                return {
+                    restrict: 'A',
+                    link: function($scope, $element, $attr) {
+
+                        $document.on('touchmove', function(e) {
+                            e.preventDefault();
+                        });
+                    }
+                }
+            })
+
+            .controller('CardsCtrl', function($scope, TDCardDelegate) {
+                console.log('CARDS CTRL');
+                var cardTypes = [
+                    { image: 'https://pbs.twimg.com/profile_images/479740132258361344/KaYdH9hE.jpeg' },
+                    { image: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png' },
+                    { image: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg' },
+                ];
+
+                $scope.cards = Array.prototype.slice.call(cardTypes, 0);
+
+                $scope.cardDestroyed = function(index) {
+                    $scope.cards.splice(index, 1);
+                };
+
+                $scope.addCard = function() {
+                    var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
+                    newCard.id = Math.random();
+                    $scope.cards.push(angular.extend({}, newCard));
+                }
+            })
+
+            .controller('CardCtrl', function($scope, TDCardDelegate) {
+                $scope.cardSwipedLeft = function(index) {
+                    console.log('LEFT SWIPE');
+                    $scope.addCard();
+                };
+                $scope.cardSwipedRight = function(index) {
+                    console.log('RIGHT SWIPE');
+                    $scope.addCard();
+                };
+            });
+
+
+    </script>
+{% endblock %}
+{% block content %}
+
+    <body ng-app="starter" no-scroll>
+    <ion-pane ng-controller="CardsCtrl">
+        <ion-header-bar class="bar-default">
+            <h1 class="title">TD Cards</h1>
+        </ion-header-bar>
+
+        <td-cards>
+            <td-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)" on-partial-swipe="cardPartialSwipe(amt)" class="card-{{card.index}}" ng-controller="CardCtrl">
+                <div class="image">
+                    <div class="yes-text" ng-style="leftTextOpacity">LIKE</div>
+                    <img ng-src="{{card.image}}">
+                    <div class="no-text" ng-style="rightTextOpacity">NOPE</div>
+                </div>
+            </td-card>
+        </td-cards>
+    </ion-pane>
+    </body>
+
+
+    {% block content %}
+        <body ng-app="starter" no-scroll>
+        <ion-pane ng-controller="CardsCtrl">
+            <td-cards class="card-panel">
+                {% for cards in users %}
+                    <td-card style="z-index: {{ cards.id }}" on-destroy="cardDestroyed($index)" on-swipe-left="cardSwipedLeft($index)"
+                             on-swipe-right="cardSwipedRight($index)" on-partial-swipe="cardPartialSwipe(amt)"
+                             class="card-{{ cards.id }}" ng-controller="CardCtrl">
+                        <div class="image" >
+                            <div class="yes-text" ng-style="leftTextOpacity">LIKE</div>
+                            <img src="/src/static/images/munnytemplogo.png">
+                            <div class="no-text" ng-style="rightTextOpacity">NOPE</div>
+                        </div>
+                        <div class="float-left">{{ cards.getfullname }}<br>{{ cards.rolegroup_primary }}<br><button></button></div>
+                        <div class="float-right"><br>{{ cards.rolegroup_secondary }}<br><button class="cardDestroyed(index)"></button></div>
+                    </td-card>
+                {% endfor %}
+            </td-cards>
+            <div id="myElement"></div>
+        </ion-pane>
+        </body>
+    {% endblock %}
+
+{% endblock %}

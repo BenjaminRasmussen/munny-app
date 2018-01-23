@@ -1,0 +1,88 @@
+{% extends "base_generic.html" %}
+{% block headstyle %}
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/src/static/js/tinder.css">
+    <style>
+
+        html, body {
+            margin: 0;
+        }
+
+        body {
+            -webkit-perspective: 500px;
+            -moz-perspective: 500px;
+            perspective: 500px;
+        }
+
+        .animate {
+            -webkit-transition: all .3s;
+            -moz-transition: all .3s;
+            transition: all .3s;
+        }
+
+        #hit {
+            padding: 10px;
+        }
+
+        #log {
+            position: absolute;
+            padding: 10px;
+        }
+
+    </style>
+{% endblock %}
+
+{% block header %}
+    <h1 style="font-family: 'Cambo', serif; line-height: 1 ">FRIEND<br>FINDER</h1>
+{% endblock %}
+
+{% block content %}
+
+    <div id="log"></div>
+    <div class="wrap">
+
+        <div class="td-cards">
+            <div id="tinderslide">
+                <!-- TODO  Make this the acutal number of matches... and a link to such page using view context.-->
+                <div class="circleBase"><p>7</p></div>
+                <ul>
+                    {% for cards in users %}
+                        <li>
+                            <div class="td-card" style="overflow: visible;">
+
+                                <div class="image"><img src="/src/static/images/munnytemplogo.png"
+                                                        style="border-bottom: black 2px solid;">
+                                    <div class="image-text-area-container">
+                                        <div class="float-container">
+                                            <div class="float-left">
+                                                <p style="font-size: 18px;"><b>{{ cards.getfullname }}</b></p>
+                                                <p>{{ cards.rolegroup_primary }}, {{ cards.rolegroup_secondary }}</p>
+                                            </div>
+                                            <div class="float-right">
+                                                <!-- TODO Make this take facebook into and an actual link (not button) -->
+                                                <button>Add+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="like"></div>
+                            <div class="dislike"></div>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+        </div>
+
+        <!-- jQuery lib -->
+        <script type="text/javascript" src="/src/static/js/js/jquery.min.js"></script>
+        <!-- transform2d lib -->
+        <script type="text/javascript" src="/src/static/js/js/jquery.transform2d.js"></script>
+        <!-- jTinder lib -->
+        <script type="text/javascript" src="/src/static/js/js/jquery.jTinder.js"></script>
+        <!-- jTinder initialization script -->
+        <script type="text/javascript" src="/src/static/js/js/main.js"></script>
+
+    </div>
+{% endblock %}

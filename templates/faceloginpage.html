@@ -1,0 +1,111 @@
+{% extends "base_generic.html" %}
+
+{% block headstyle %}
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            margin-left: 5%;
+            margin-right: 5%;
+        }
+
+        .header {
+            font-size: 16px;
+        }
+
+        .header .logoTop {
+            margin-bottom: -109px;
+        }
+
+        .header .logoBottom {
+            margin-top: -113px;
+        }
+
+        .fb-button-wrap {
+            text-align: center;
+
+        }
+
+        .fb-login-button {
+            text-align: center;
+
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+{% endblock %}
+
+{% block header %}
+    <h1>PROCESSING<br>PAGE</h1>
+{% endblock %}
+
+{% block content %}
+    <div id="fb-root"></div>
+    <script>(function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <div class="facebook-content-wrap">
+        <h1>Friend Finder processing page</h1>
+        <p>To enter the friend finder app we require your social media consent. This information will be stored on our
+            secure servers. It will only be given to other users if you add them. It will be kept private to users on
+            whom
+            you swipe but do not add. Fill out the form below and we will unlock this feature. Whatsapp number is
+            optional</p>
+
+        <p> Optionally you can add your phone number and then login with facebook.</p>
+
+        <div class="facebook-form-class" style="margin-left: 15%; margin-right: 15%;">
+            <form action="" method="POST">
+                <label>
+                    <textarea style="height: 45px;"></textarea>
+                </label>
+                <input class="button" type="submit" value="Submit">
+            </form>
+        </div>
+        <br>
+        <div class="fb-button-wrap">
+            <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with"
+                 data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
+        </div>
+    </div>
+    <a id="fb-login" href="" onclick="facebookLogin()">TESTER</a>
+    <br> <br>
+    <button id="btn-facebook-signin"  class="sign-up"> Sign Up</button>
+
+
+
+    <script>
+        function facebookLogin() {
+            FB.login(function (response) {
+                    var token = response.authResponse.accessToken;
+                    var uid = response.authResponse.userID;
+                    if (response.authResponse) {
+                        FB.api(
+                            '/me',
+                            'GET',
+                            {"fields": "id,name,friends,picture"},
+                            function (response) {
+                                console.log(response);
+                            }
+                        );
+
+                        FB.api('/' + uid, 'get', {access_token: token}, function (response) {
+                            console.log(response);
+                        });
+                    }
+                },
+                {scope: 'public_profile'}
+            );
+        }
+    </script>
+
+{% endblock %}
