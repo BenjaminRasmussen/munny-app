@@ -166,7 +166,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "/src/friendfinder/"
 
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url
