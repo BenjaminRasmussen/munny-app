@@ -32,13 +32,13 @@ class User(models.Model):
     rolegroup_primary = models.ForeignKey(Munnygroup, related_name="rolegroup_secondary", default="", )
     rolegroup_secondary = models.ForeignKey(Munnygroup, related_name="rolegroup_primary", default="", )
 
-    MUNID = models.CharField(help_text="This is the google docs jotform id thingy", max_length=20)
+    jotformspace = models.CharField(help_text="This is the google docs jotform id thingy", max_length=20)
 
-    list_display = ('id', 'MUNID', 'Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary',)
-    fields = ('Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary', 'MUNID')
+    list_display = ('id', 'jotformspace', 'Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary',)
+    fields = ('Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary', 'jotformspace')
 
     def __str__(self):
-        return str(self.MUNID)
+        return str(self.id)
 
     def getfullname(self):
         return self.Firstname + " " + self.Lastname
