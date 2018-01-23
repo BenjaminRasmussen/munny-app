@@ -1,15 +1,10 @@
 from __future__ import unicode_literals
-import math
 import uuid
-from django.db import models
 from django.contrib.auth.models import User
-from django.db import IntegrityError
 from django.db import models
 # Create your models here.
 from django.dispatch import receiver
-from null import Null
 
-from logic.encrypt import cesarcipher
 
 
 class Munnygroup(models.Model):
