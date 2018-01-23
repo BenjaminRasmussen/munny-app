@@ -30,7 +30,7 @@ class User(models.Model):
 
     MUNID = models.UUIDField(default=uuid.uuid4, editable=False)
 
-    list_display = ('id', 'MUNID', 'Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary',)
+    list_display = ('MUNID', 'Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary',)
     fields = ('Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary',)
 
     def __str__(self):
