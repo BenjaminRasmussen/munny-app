@@ -83,7 +83,7 @@ def friendfinderview(request):
 
     return render(
         request,
-        'faceloginpage.html',
+        'visual.html',
         context={"users": User.objects.all(),
                  "user_name": Username
                  }

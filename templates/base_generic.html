@@ -58,7 +58,9 @@
                   color: dimgray;
                   margin-top: 5px;
                     ">MUNNY <a href={% url 'admin:index' %}>Web-App</a> Proudly presented by <br> Benjamin P.
-                        Lykke Rasmussen & <a href="">(co)</a><br><a href="">EULA</a> & <a href="">Legal</a>
+                        Lykke Rasmussen & <a href="{% url 'src:index' %}">(co)</a><br><a href="{% url 'src:index' %}">EULA</a>, <a
+                                href="{% url 'src:index' %}">Legal & TOS</a> and <a href="{% url 'src:index' %}">Privacy
+                            Policy </a>
                     </p>
 
                     <br>

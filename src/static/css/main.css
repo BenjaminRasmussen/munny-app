@@ -207,6 +207,12 @@ body, html, .site {
     margin: 2%;
 }
 
+.credits a:visited{
+    color: #FFC257;
+    text-decoration: none;
+    text-underline: none;
+}
+
 .form-container textarea, .facebook-form-class textarea {
     width: 100%;
     height: 150px;

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Login</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+  </form>
+  <br>
+  <p><strong>-- OR --</strong></p>
+    <a title="Facebook" class="socialaccount_provider facebook" href="/accounts/facebook/login/?process=login">Facebook</a>
+    <div class="fb-button-wrap">
+        <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with"
+             data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
+    </div>
+{% endblock %}
