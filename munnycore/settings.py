@@ -139,7 +139,33 @@ FACEBOOK_APP_ID = str('186028088657155')
 FACEBOOK_APP_SECRET = str('e6f5b9c45de16fb3e9f572a8a52c724d')
 
 
-SSITE_ID = 1
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'METHOD': 'oauth2',
+        'SCOPE': ['email', 'public_profile', 'user_friends'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'INIT_PARAMS': {'cookie': True},
+        'FIELDS': [
+            'id',
+            'email',
+            'name',
+            'first_name',
+            'last_name',
+            'verified',
+            'locale',
+            'timezone',
+            'link',
+            'gender',
+            'updated_time',
+            'photo',
+        ],
+        'EXCHANGE_TOKEN': True,
+        'LOCALE_FUNC': 'path.to.callable',
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v2.5',
+    }
+}
+SITE_ID = 1
 
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url
