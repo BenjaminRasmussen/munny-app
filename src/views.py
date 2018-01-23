@@ -1,4 +1,5 @@
 from allauth.socialaccount import providers
+from allauth.socialaccount.models import SocialAccount
 from allauth.socialaccount.providers.facebook.provider import FacebookProvider, GRAPH_API_URL
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites import requests
@@ -6,6 +7,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 from src.models import User, fruitPerson
+from allauth import socialaccount
 
 
 # Create your views here.
@@ -83,12 +85,16 @@ def friendfinderview(request):
         Username = User.objects.get(MUNID=userid).getfullname()
     else:
         Username = "NOT LOGGED IN"
+
+    # GET ALL FB ACCOUNTS
+    provider = providers.registry.by_id(FacebookProvider.id)
+    socaccs = SocialAccount.objects.filter(provider=provider).all()
     return render(
         request,
         'visual.html',
         context={"users": User.objects.all(),
                  "user_name": Username,
-                 "facebooks": FacebookProvider.account_class.account
+                 "facebookaccounts": socaccs,
                  }
     )
 
