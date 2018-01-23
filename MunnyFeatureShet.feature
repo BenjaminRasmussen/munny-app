@@ -52,3 +52,4 @@ Feature: Speakercountry, Fruitperson, user???
         "Country list"
 
 
+    href="/accounts/facebook/login/?process=login"
