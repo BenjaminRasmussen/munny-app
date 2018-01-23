@@ -24,18 +24,7 @@
 {% endblock %}
 
 {% block content %}
-    <div id="fb-root"></div>
-    <script>(function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.11&appId=186028088657155&autoLogAppEvents=1';
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
 
-    <a href="/accounts/facebook/login/?process=login"><img style="width: 200px;" src="/src/static/images/facebookthingy.png" href="/accounts/facebook/login/?process=login"
-                                                           class="socialaccount_provider facebook"></a>
     <h1>Friend Finder processing page</h1>
     <p>To enter the friend finder app we require your social media consent. This information will be stored on our
         secure servers. It will only be given to other users if you add them. It will be kept private to users on
@@ -46,5 +35,4 @@
     <img src="/src/static/images/facebookthingy.png" style="width: 250px; height: 48px;"/>
     </a>
 
-    <a href="{% provider_login_url "facebook" method="js_sdk" %}">Login Button image</a>
 {% endblock %}
