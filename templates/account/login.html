@@ -1,17 +1,57 @@
 {% extends 'base.html' %}
 
+{% block headstyle %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+{% endblock %}
+
 {% block content %}
-  <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-  </form>
-  <br>
-  <p><strong>-- OR --</strong></p>
-    <a title="Facebook" class="socialaccount_provider facebook" href="/accounts/facebook/login/?process=login">Facebook</a>
+    <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+    <br>
+    <div id="fb-root"></div>
+
+    <p><strong>-- OR --</strong></p>
+    <script>(function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <a title="Facebook" class="socialaccount_provider facebook"
+       href="/accounts/facebook/login/?process=login">Facebook</a>
     <div class="fb-button-wrap">
         <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with"
              data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
     </div>
+    <script>
+        function facebookLogin() {
+            FB.login(function (response) {
+                    var token = response.authResponse.accessToken;
+                    var uid = response.authResponse.userID;
+                    if (response.authResponse) {
+                        FB.api(
+                            '/me',
+                            'GET',
+                            {"fields": "id,name,friends,picture"},
+                            function (response) {
+                                console.log(response);
+                            }
+                        );
+
+                        FB.api('/' + uid, 'get', {access_token: token}, function (response) {
+                            console.log(response);
+                        });
+                    }
+                },
+                {scope: 'public_profile'}
+            );
+        }
+    </script>
 {% endblock %}
