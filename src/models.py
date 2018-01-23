@@ -89,6 +89,23 @@ class fruitVote(models.Model):
         a_record.save()
 
 
+class ticket(models.Model):
+    title = models.CharField(max_length=35, help_text="Title of the ticket")
+    writer = models.ForeignKey(User, default="")
+    text = models.TextField(help_text="Ticket bodytext")
+
+    def __str__(self):
+        return str(self.title+str(self.id))
+
+
+class ticketreply(models.Model):
+    motherticket = models.ForeignKey(User, default=ticket.objects.last())
+    text = models.TextField(help_text="Ticket reply bodytext")
+
+    def __str__(self):
+        return self.motherticket+str(self.id)
+
+
 @receiver(models.signals.post_save, sender=User)
 def execute_after_save(sender, instance, created, *args, **kwargs):
     if created:
@@ -96,8 +113,8 @@ def execute_after_save(sender, instance, created, *args, **kwargs):
         # TODO Add clause such that not everyone is displayed as a speaker but everyone is a voter.
 
 
-"""
-        record = fruitPerson(userobject=User.objects.last())
-        record.save()
-"""
-# TODO Make an @receiver that scans for a 'complementary' tinder match every time one is created.
+        """
+                record = fruitPerson(userobject=User.objects.last())
+                record.save()
+        """
+        # TODO Make an @receiver that scans for a 'complementary' tinder match every time one is created.

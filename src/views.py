@@ -6,7 +6,7 @@ from django.shortcuts import render
 
 # Create your views here.
 
-from src.models import User, fruitPerson
+from src.models import User, fruitPerson, ticket, ticketreply
 
 
 def index(request):
@@ -56,13 +56,23 @@ def fruitleader(request):
 
 
 def ticketview(request):
+    if request.POST:
+        print(request)
+        # TODO make ticket!
+
+    # User cookie
     userid = request.session.get('munnyid', 'NOT LOGGED IN')
     if not userid == "NOT LOGGED IN":
         Username = User.objects.get(MUNID=userid).getfullname()
+        # Tickets
+        tickets = ticket.objects.all()
+        replies = ticketreply.objects.all()
         return render(
             request,
             'ticketwriter.html',
-            context={"user_name": Username},
+            context={"user_name": Username,
+                     "tickets": tickets,
+                     "ticketreplies": replies},
         )
     else:
         return HttpResponseRedirect('/missingloginpage/')
@@ -91,8 +101,6 @@ def friendfinderview(request):
     )
 
 
-
-
 def missingloginpage(request):
     return render(
         request,
@@ -115,13 +123,10 @@ def fb_complete_login(request, app, token):
         params={
             'fields': ','.join(provider.get_fields()),
             'access_token': token.token,
-            'appsecret_proof' : appsecret_proof
+            'appsecret_proof': appsecret_proof
         })
-
 
     resp.raise_for_status()
     extra_data = resp.json()
     login = provider.sociallogin_from_response(request, extra_data)
     return login
-
-
