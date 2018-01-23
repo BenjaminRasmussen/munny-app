@@ -80,12 +80,13 @@ def friendfinderview(request):
     userid = request.session.get('munnyid', 'NOT LOGGED IN')
     if not userid == "NOT LOGGED IN":
         Username = User.objects.get(MUNID=userid).getfullname()
-
+    else:
+        Username = "NOT LOGGED IN"
     return render(
         request,
         'visual.html',
         context={"users": User.objects.all(),
-                 "user_name": Username
+                 "user_name": Username,
                  }
     )
 
