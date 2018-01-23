@@ -7,10 +7,11 @@
 {% block content %}
     <h2>Login</h2>
     <div id="fb-root"></div>
-    <script>(function(d, s, id) {
+    <script>(function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
+        js = d.createElement(s);
+        js.id = id;
         js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.11&appId=186028088657155&autoLogAppEvents=1';
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
@@ -35,42 +36,33 @@
             </form>
         </div>
         <br>
-        <div class="fb-button-wrap">
-            <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with"
-                 data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
-        </div>
-    </div>
-    <a id="fb-login" href="" onclick="facebookLogin()">TESTER</a>
-    <br> <br>
-    <button id="btn-facebook-signin"  class="sign-up"> Sign Up</button>
+        <img src="/src/static/images/facebookthingy.png" href="/accounts/facebook/login/?process=login"
+             class="socialaccount_provider facebook">
 
-    <a title="Facebook" class="socialaccount_provider facebook" href="/accounts/facebook/login/?process=login">Facebook</a>
+        <script>
+            function facebookLogin() {
+                FB.login(function (response) {
+                        var token = response.authResponse.accessToken;
+                        var uid = response.authResponse.userID;
+                        if (response.authResponse) {
+                            FB.api(
+                                '/me',
+                                'GET',
+                                {"fields": "id,name,friends,picture"},
+                                function (response) {
+                                    console.log(response);
+                                }
+                            );
 
-
-    <script>
-        function facebookLogin() {
-            FB.login(function (response) {
-                    var token = response.authResponse.accessToken;
-                    var uid = response.authResponse.userID;
-                    if (response.authResponse) {
-                        FB.api(
-                            '/me',
-                            'GET',
-                            {"fields": "id,name,friends,picture"},
-                            function (response) {
+                            FB.api('/' + uid, 'get', {access_token: token}, function (response) {
                                 console.log(response);
-                            }
-                        );
-
-                        FB.api('/' + uid, 'get', {access_token: token}, function (response) {
-                            console.log(response);
-                        });
-                    }
-                },
-                {scope: 'public_profile'}
-            );
-        }
-    </script>
+                            });
+                        }
+                    },
+                    {scope: 'public_profile'}
+                );
+            }
+        </script>
 
 
 {% endblock %}
