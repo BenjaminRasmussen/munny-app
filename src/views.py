@@ -1,12 +1,10 @@
 from allauth.socialaccount import providers
 from allauth.socialaccount.providers.facebook.provider import FacebookProvider, GRAPH_API_URL
-from django.contrib.auth.decorators import login_required
 from django.contrib.sites import requests
 from django.http import HttpResponseRedirect, HttpRequest, HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 
 # Create your views here.
-from django.utils.encoding import smart_str
 
 from src.models import User, fruitPerson
 
