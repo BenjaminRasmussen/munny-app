@@ -36,7 +36,7 @@
             </form>
         </div>
         <br>
-        <a href="/accounts/facebook/login/?process=login"><img src="/src/static/images/facebookthingy.png" href="/accounts/facebook/login/?process=login"
+        <a href="/accounts/facebook/login/?process=login"><img style="width: 200px;" src="/src/static/images/facebookthingy.png" href="/accounts/facebook/login/?process=login"
              class="socialaccount_provider facebook"></a>
 
         <script>
@@ -65,4 +65,20 @@
         </script>
 
 
+
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.11&appId=186028088657155&autoLogAppEvents=1';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+        <div class="fb-login-button" data-width=""></div>
+
+        <div class="fb-button-wrap">
+            <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with"
+                 data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
+        </div>
 {% endblock %}
