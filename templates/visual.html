@@ -53,17 +53,17 @@
                 <!-- TODO  Make this the acutal number of matches... and a link to such page using view context.-->
                 <div class="circleBase"><p>7</p></div>
                 <ul>
-                    {% for cards in users %}
+                    {% for cards in facebookaccounts %}
                         <li>
                             <div class="td-card" style="overflow: visible;">
 
-                                <div class="image"><img src="/src/static/images/munnytemplogo.png"
+                                <div class="image"><img src="{{ cards.get_avatar_url }}"
                                                         style="border-bottom: black 2px solid;">
                                     <div class="image-text-area-container">
                                         <div class="float-container">
                                             <div class="float-left">
-                                                <p style="font-size: 18px;"><b>{{ cards.getfullname }}</b></p>
-                                                <p>{{ cards.rolegroup_primary }}, {{ cards.rolegroup_secondary }}</p>
+                                                <p style="font-size: 18px;"><b>{{ cards.user }}</b></p>
+                                                <p></p>
                                             </div>
                                             <div class="float-right">
                                                 <!-- TODO Make this take facebook into and an actual link (not button) -->
