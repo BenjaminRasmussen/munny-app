@@ -32,7 +32,7 @@ class User(models.Model):
     rolegroup_primary = models.ForeignKey(Munnygroup, related_name="rolegroup_secondary", default="", )
     rolegroup_secondary = models.ForeignKey(Munnygroup, related_name="rolegroup_primary", default="", )
 
-    MUNID = models.CharField(help_text="This is the google docs jotform id thingy", max_length=20)
+    MUNID = models.CharField(help_text="This is the google docs jotform id thingy", default="", max_length=20)
 
     list_display = ('id', 'MUNID', 'Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary',)
     fields = ('Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary', 'MUNID')
