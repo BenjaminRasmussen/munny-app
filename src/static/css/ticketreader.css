@@ -4,6 +4,6 @@
     grid-template-areas:
     "objectlist header"
     "objectlist content"
-    "objectlist footer"
-    "objectlist navbar";
+    "objectlist navbar"
+    "objectlist footer";
 }

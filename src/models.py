@@ -93,6 +93,20 @@ class fruitVote(models.Model):
         a_record.save()
 
 
+class ticket(models.Model):
+    Title = models.CharField(max_length=50, help_text="Title of ticket goes here")
+    Text = models.TextField(help_text="Simply the body of the ticket.")
+    InitDate = models.DateTimeField(auto_now=True, help_text="Date and time of creation")
+    Writer = models.ForeignKey(User)
+
+
+class ticketreply(models.Model):
+    Text = models.TextField(help_text="Simply the body of the ticket.")
+    InitDate = models.DateTimeField(auto_now=True, help_text="Date and time of creation")
+    Writer = models.ForeignKey(User)
+    Ticket = models.ForeignKey(ticket)
+
+
 @receiver(models.signals.post_save, sender=User)
 def execute_after_save(sender, instance, created, *args, **kwargs):
     if created:
