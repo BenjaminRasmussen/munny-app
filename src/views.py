@@ -54,8 +54,10 @@ def ticketview(request):
     if request.POST:
         print(request)
         # TODO make ticket!
+        return HttpResponseRedirect('/src/suc/')
 
-    # User cookie
+
+# User cookie
     userid = request.session.get('munnyid', 'NOT LOGGED IN')
     if not userid == "NOT LOGGED IN":
         Username = User.objects.get(MUNID=userid).getfullname()
@@ -127,3 +129,10 @@ def fb_complete_login(request, app, token):
     extra_data = resp.json()
     login = provider.sociallogin_from_response(request, extra_data)
     return login
+
+
+def suc(request):
+    return render(
+        request,
+        'successfullPostPage.html'
+    )
