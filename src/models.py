@@ -36,8 +36,8 @@ class munnyuser(models.Model):
 
     FACEBOOKLINK = models.CharField(help_text="Facebbok ID", max_length=100)
 
-    list_display = ('id', 'MUNID', 'Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary',)
-    fields = ('Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary', 'MUNID')
+    list_display = ('id', 'MUNID', 'Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary', 'FACEBOOKLINK',)
+    fields = ('Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary', 'MUNID', 'FACEBOOKLINK',)
 
     def __str__(self):
         return str(self.MUNID)
