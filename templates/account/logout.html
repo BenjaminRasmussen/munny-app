@@ -1,0 +1,39 @@
+{% extends "base_generic.html" %}
+
+{% block headstyle %}
+    <style>
+        .header {
+            font-size: 16px;
+        }
+
+        .header .logoTop {
+            margin-bottom: -112px;
+        }
+
+        .header .logoBottom {
+            margin-top: -114px;
+        }
+    </style>
+{% endblock %}
+
+{% block header %}
+    <h1>Accounts</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="post" action="{% url 'account_logout' %}">
+        {% csrf_token %}
+        {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+        {% endif %}
+        <button type="submit">Sign out</button>
+    </form>
+
+    {% load account %}
+    {% load socialaccount %}
+
+    {% user_display user %}
+    {% if socialaccount %}
+        {% user_display socialaccount  %}
+    {% endif %}
+{% endblock %}

@@ -30,6 +30,13 @@
         <div class="whitespaceright"></div>
 
         <div class="header">
+
+            {% if user.is_authenticated %}
+            <div class="left">
+                <div class="cont"><p><a href="{% url "account_logout" %}">Sign out</a></p></div>
+            </div>
+            {% endif %}
+
             <div class="center">
                 <div class="logoTop"><img src="/src/static/images/MunTop.png">
                 </div>
@@ -37,6 +44,7 @@
                 <div class="logoBottom"><img src="/src/static/images/MunBot.png">
                 </div>
             </div>
+
             <div class="right">
                 <div class="cont"><p> Logged in as: {{ user_name }}</p></div>
             </div>
