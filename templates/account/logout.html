@@ -31,14 +31,9 @@
 
     {% load account %}
     {% load socialaccount %}
-    {% user_display user %}
-    {% user_display user.socialaccounts.extra_data %}
-    {% user_display account.extra_data %}
-    {% get_social_accounts user as accounts %}
-    {% if accounts %}
-    {{ accounts.facebook.id }}
-    {% endif %}
-    {{ accounts.facebook.id }}
+    {% user_display user.extra_data %}
+
+
 
     {% load staticfiles %}
     <div id="fb-root"></div>
