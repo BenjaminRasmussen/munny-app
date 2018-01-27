@@ -1,4 +1,5 @@
 #project/settings/adapter.py
+from allauth.account.adapter import DefaultAccountAdapter
 from django.contrib.auth.models import User
 from django.shortcuts import HttpResponse,redirect
 from allauth.account.models import EmailAddress
@@ -21,3 +22,8 @@ def link_to_local_user(sender, request, sociallogin, **kwargs):
         muser.FACEBOOKLINK = sociallogin
     except:
         pass
+
+class MyAdapter(DefaultAccountAdapter):
+
+    def get_login_redirect_url(self, request):
+        return request.GET['next']
