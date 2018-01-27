@@ -102,7 +102,7 @@
         }
 
         table {
-            width: 99%;
+            width: 100%;
             table-layout: auto;
 
         }
@@ -139,8 +139,8 @@
             {{ form }}
             <table>
                 <tr>
-                    <th>Flag</th>
-                    <th>Country</th>
+                    <th>Flag/Image</th>
+                    <th>Country/Speaker</th>
                     <th style="text-align: right">Fruitful?
                     </th>
                 </tr>
@@ -149,27 +149,32 @@
                     <td><br></td>
                     <td></td>
                 </tr>
-
-                {% for person in fruitpersons %}
+                {% for country in fruitpersons %}
                     <tr>
                         <td>
-                            <img src="/src/static/images/munnytemplogo.png">
+                            <img src="{{ country.countryflag }}" , style="height: 64px; max-width: 85px;">
                         </td>
                         <td>
-                            <label> {{ person.userobject.getfullname }}</label>
+                            <label> {{ country.country }}</label>
                         </td>
                         <td>
                             <div class="iosbutton">
                                 <label class="switch">
-                                    <input type="checkbox">
+                                    {% if country.country in countrylistwithtrue %}
+                                    <input name="CHECKER" type="checkbox" id="IO" value="{{ country }}" checked>
                                     <span class="slider round"></span>
+                                    {% endif %}
+                                    {% if not country.country in countrylistwithtrue %}
+                                        <input name="CHECKER" type="checkbox" id="IO" value="{{ country }}" >
+                                        <span class="slider round"></span>
+                                    {% endif %}
                                 </label>
                             </div>
                         </td>
                     </tr>
                 {% endfor %}
             </table>
-            <input class="button" type="submit" value="Submit">
+            <input class="button" type="submit">
         </form>
     </div>
 

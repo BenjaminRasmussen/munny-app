@@ -3,9 +3,15 @@
 <head>
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimal-ui, maximum-scale=1, user-scalable=no">
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="apple-mobile-web-app-title" content="Phaser App">
+    <meta name="viewport" content="initial-scale=1 maximum-scale=1 user-scalable=0 minimal-ui"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Cambo" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Fira+Sans|Playfair+Display|Slabo+27px|Source+Sans+Pro" rel="stylesheet">
     {% load static %}
     <title>Munny App by Benjamin Rasmussen</title>
     <link rel="stylesheet" href="/src/static/css/main.css">
@@ -16,34 +22,36 @@
     {% endblock %}
 </head>
 <body>
-<div class="site">
-    <script src="/src/static/js/fb.js"></script>
-    <div class="whitespaceleft"></div>
-    <div class="whitespaceright"></div>
+<md-content layout-padding>
 
-    <div class="header">
-        <div class="center">
-            <div class="logoTop"><img src="/src/static/images/MunTop.png">
+    <div class="site">
+        <script src="/src/static/js/fb.js"></script>
+        <div class="whitespaceleft"></div>
+        <div class="whitespaceright"></div>
+
+        <div class="header">
+            <div class="center">
+                <div class="logoTop"><img src="/src/static/images/MunTop.png">
+                </div>
+                {% block header %}{% endblock %}
+                <div class="logoBottom"><img src="/src/static/images/MunBot.png">
+                </div>
             </div>
-            {% block header %}{% endblock %}
-            <div class="logoBottom"><img src="/src/static/images/MunBot.png">
+            <div class="right">
+                <div class="cont"><p> Logged in as: {{ user_name }}</p></div>
             </div>
         </div>
-        <div class="right">
-            <div class="cont"><p> Logged in as: {{ user_name }}</p></div>
-        </div>
-    </div>
-    <div class="content-container">
-        <div class="content">
-            {% block content %}{% endblock %}
+        <div class="content-container">
+            <div class="content">
+                {% block content %}{% endblock %}
 
 
-            <div class="credits-wrapper">
-                <div class="credits">
-                    <br>
-                    <img class="munnylogo"
-                         src="/src/static/images/smolLogo-e1489176034914.png"
-                         style="
+                <div class="credits-wrapper">
+                    <div class="credits">
+                        <br>
+                        <img class="munnylogo"
+                             src="/src/static/images/smolLogo-e1489176034914.png"
+                             style="
                     display: block;
                     justify-content: center !important;
                     align-content: center !important;
@@ -52,67 +60,69 @@
                     padding: 0 !important;
                     height: 64px;
                     width: 64px;">
-                    <div class="credit-text-container" style="    border-bottom: solid 1px gray">
-                    </div>
-                    <p style="
+                        <div class="credit-text-container" style="    border-bottom: solid 1px gray">
+                        </div>
+                        <p style="
                 text-align: center;
                   font-size: 11px;
                   color: dimgray;
                   margin-top: 5px;
                     ">MUNNY <a href={% url 'admin:index' %}>Web-App</a> Proudly presented by <br> Benjamin P.
-                        Lykke Rasmussen & <a href="{% url 'src:index' %}">(co)</a><br><a href="{% url 'src:index' %}">EULA</a>,
-                        <a
-                                href="{% url 'src:index' %}">Legal & TOS</a> and <a href="{% url 'src:index' %}">Privacy
-                            Policy </a>
-                    </p>
+                            Lykke Rasmussen & <a href="{% url 'src:credits' %}">(co)</a><br>
+                            <a
+                                    href="{% url 'src:TOS' %}">Legal & TOS</a> and <a
+                                    href="{% url 'src:PrivacyPolicy' %}">Privacy
+                                Policy </a>
+                        </p>
 
-                    <br>
+                        <br>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="nav-bar">
-        <nav>
-            <ul>
-                <li>
-                    <a href={% url 'src:index' %}>
-                        <div class="nav-button"><img src="/src/static/images/munnytemplogo.png">
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href={% url 'src:fruit' %}>
-                        <div class="nav-button"><img src="/src/static/images/munnytemplogo.png">
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href={% url 'src:ticketview' %}>
-                        <div class="nav-button"><img src="/src/static/images/munnytemplogo.png">
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href={% url 'src:friendfinderview' %}>
-                        <div class="nav-button"><img src="/src/static/images/munnytemplogo.png">
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+        <div class="nav-bar">
+            <nav>
+                <ul>
+                    <li>
+                        <a href={% url 'src:index' %}>
+                            <div class="nav-button"><img src="/src/static/images/munnytemplogo.png">
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href={% url 'src:fruit' %}>
+                            <div class="nav-button"><img src="/src/static/images/munnytemplogo.png">
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href={% url 'src:ticketview' %}>
+                            <div class="nav-button"><img src="/src/static/images/munnytemplogo.png">
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href={% url 'src:friendfinderview' %}>
+                            <div class="nav-button"><img src="/src/static/images/munnytemplogo.png">
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
 
-    <div class="footer">
-        <footer>
-            <address>
-                Website made by: Benjamin P. Rasmussen & (co) Iustin Beldie<br>
-                Support phone: +45 42 78 67 86<br>
-                Support email: dumstick228@gmail.com <br>
-                &copy; Benjamin P. Rasmussen, all rights reserved
-            </address>
-        </footer>
-    </div>
+        <div class="footer">
+            <footer>
+                <address>
+                    Website made by: Benjamin P. Rasmussen & (co) Iustin Beldie<br>
+                    Support phone: +45 42 78 67 86<br>
+                    Support email: dumstick228@gmail.com <br>
+                    &copy; Benjamin P. Rasmussen, all rights reserved
+                </address>
+            </footer>
+        </div>
 
-</div>
+    </div>
+</md-content>
 </body>
 </html>

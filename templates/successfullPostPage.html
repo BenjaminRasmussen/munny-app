@@ -1,2 +1,42 @@
 {% extends "base_generic.html" %}
 
+{% block headstyle %}
+    <style>
+        .header {
+            font-size: 15px;
+        }
+
+        .header .logoTop {
+            margin-bottom: -104px;
+        }
+
+        .header .logoBottom {
+            margin-top: -110px;
+        }
+        .content{
+            background: #1D976C;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #93F9B9, #1D976C);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #93F9B9, #1D976C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+        h1, p{
+            text-align: center;
+        }
+        img{
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            align-content: center;
+            display: block;
+        }
+    </style>
+{% endblock %}
+
+{% block header %}
+    <h1>Task: Done</h1>
+{% endblock %}
+
+{% block content %}
+    <h1>SUCCESS!</h1>
+    <img src="/src/static/images/Checkmark.png" align="middle" style="height: 25%; width: 25%;">
+    <p>Whatever you were doing, the web-server registered it and you can proceed to another page now if you wish!</p>
+{% endblock %}

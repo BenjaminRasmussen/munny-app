@@ -17,17 +17,9 @@
 {% endblock %}
 
 {% block header %}
-    <h1>LEADER<br>BOARD</h1>
-
+    <h1>Accounts</h1>
 {% endblock %}
 
 {% block content %}
-    <div class="leaderboard">
-        <ul>
 
-            {% for player in leaderboard %}
-                <li>{{ player.getfullname }} - {{ player.getscore }} </li>
-            {% endfor %}
-        </ul>
-    </div>
 {% endblock %}

@@ -1,0 +1,68 @@
+{% extends "base_generic.html" %}
+
+{% block headstyle %}
+    <style>
+        .header {
+            font-size: 20px;
+        }
+
+        .header .logoTop {
+            margin-bottom: -117px;
+        }
+
+        .header .logoBottom {
+            margin-top: -119px;
+        }
+
+        .content h1, ul, p, h2 {
+            text-align: center;
+            margin: 15px;
+        }
+
+        .content h2{
+            padding-bottom: 10px;
+            border-bottom: 2px black solid;
+        }
+
+        .content ul {
+            list-style: none;
+            padding: 0;
+            padding-bottom: 5px;
+            border-bottom: 2px black solid;
+
+        }
+        .content li{
+            margin-bottom: 10px;
+        }
+
+        .nav-bar ul{
+            text-align: left;
+        }
+        .content .credits{
+           margin: 0 auto;
+            padding: inherit;
+            width: 225px;
+        }
+    </style>
+{% endblock %}
+
+
+{% block header %}
+    <h1>Credits</h1>
+{% endblock %}
+
+{% block content %}
+    <h2>This App was brought to you by these awesome people!</h2>
+    <ul>
+        <li>Development - Benjamin Rasmussen <br></li>
+        <li>Project lead / Design - Charles Burns <br></li>
+        <li>Lead Design - Caroline Uttenthal <br></li>
+        <li>Co Development - Iustin Beldie <br></li>
+        <li>Shoutout to the executive team of MUNNY 2018, for beta testing! <br></li>
+        <li>You, the user, for the inspiration for this app.<br></li>
+    </ul>
+
+    <p style="font-size: 12px; color: gray;">And our sincerest gratitude to Stuart Towner Noble and Jim Bushby for their
+        unmitigated support of the project throughout.
+    </p>
+{% endblock %}

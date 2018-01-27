@@ -3,8 +3,9 @@
 {% block headstyle %}
     <style>
         .header {
+            background-color: #dd1818;
             font-size: 10px;
-            color: red;
+            color: white !important;
         }
 
         .header .logoTop {
@@ -14,6 +15,11 @@
         .header .logoBottom {
             margin-top: -102px;
         }
+
+        .content p, h1 {
+            margin: 15px !important;
+        }
+
     </style>
 {% endblock %}
 
@@ -23,13 +29,30 @@
 
 {% block content %}
     <style>
-        .content{
-            background-color: #FF9D19;
+        .content {
+            background: #333333; /* fallback for old browsers */
+            background: -webkit-linear-gradient(to top, lightgrey, #dd1818); /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to top, lightgrey, #dd1818); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
             text-align: center;
+
         }
 
+        .header h1 {
+            color: white;
+        }
+
+        h1, p {
+            color: black;
+        }
     </style>
-    <h1> !!!ERROR ENCOUNTERED!!! <br> PLEASE USE YOUR QR CODE BADGE TO LOG IN</h1>
-    <p> Due to technical reasons access to this page is limited to users who login using our MUNNY-ID badge by scanning the code with your phone's native QR scanner (camera).
-    If you have any trouble with your QR code please consult the secretariat for more help. </p>
+    <h1>!!!ERROR ENCOUNTERED!!!<br>PLEASE USE YOUR QR CODE BADGE TO LOGIN</h1>
+    <p> Due to technical reasons access to this page is limited to users who login using our MUNNY-ID badge by scanning
+        the code with your phone's native QR scanner (camera).
+        If you have any trouble with your QR code please consult the secretariat for more help. </p>
+    <br>
+    <p>If you are a tester from facebook and would like to view the full site. Please reload the page through this list
+        app.munny.dk/src/sessions/11111111111111111111
+        No forwardslash at the end. Please note this mediocore login system is not used to store any of your data from
+        facebook, nor can such a login view any such data without first logging in with facebook seperately from the
+        sessions cookie.</p>
 {% endblock %}

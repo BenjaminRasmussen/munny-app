@@ -5,8 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.sites import requests
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-
-from src.models import User, fruitPerson
+from src.models import munnyuser, fruitPerson, speakerCountry, ticket, ticketreply, Munnygroup, fruitVote
 from allauth import socialaccount
 
 
@@ -21,55 +20,160 @@ def index(request):
 
 
 def fruit(request):
-    if request.method == "POST":
-        print(request.POST)
-
     userid = request.session.get('munnyid', 'NOT LOGGED IN')
     if not userid == "NOT LOGGED IN":
-        Username = User.objects.get(MUNID=userid).getfullname()
-        return render(
-            request,
-            'fruitvote.html',
-            context={"user_name": Username,
-                     "fruitpersons": fruitPerson.objects.all(), },
-        )
+        Username = munnyuser.objects.get(MUNID=userid).getfullname()
     else:
         return HttpResponseRedirect('/missingloginpage/')
+
+    curUser = munnyuser.objects.get(MUNID=request.session.get('munnyid'))
+    if request.method == "POST":
+        # Get some of those answers! System works like this. POST returns a list of countries.
+        # If a country is in that list. then the person voted fruitful for said country. GL!
+        countrylist = request.POST.getlist('CHECKER')
+        for i in list(speakerCountry.objects.all()):
+            if i.country in countrylist:
+                t = fruitVote.objects.create(
+                    voter=curUser,
+                    votee=i,
+                    bool=True,
+                )
+                t.save()
+            else:
+                t = fruitVote.objects.create(
+                    voter=curUser,
+                    votee=i,
+                    bool=False,
+                )
+                t.save()
+
+        return render(request,
+                      'successfullPostPage.html',
+                      context={"user_name": Username,
+                               "fruit_object": fruitPerson.objects.get(userobject=munnyuser.objects.get(MUNID=userid))},
+                      )
+
+    # Return default values
+    votes = fruitVote.objects.filter(voter=curUser).order_by('votee_id')
+    countrydict = {}
+    for i in list(speakerCountry.objects.all()):
+        for j in votes:
+            if i.id == j.votee.id:
+                try:
+                    countrydict[str(i.country)] = j.bool
+                except:
+                    pass
+    a = []
+    for i in list(speakerCountry.objects.all()):
+        try:
+            if countrydict[str(i.country)]:
+                a.append(i.country)
+        except:
+            pass
+
+    return render(
+        request,
+        'fruitvote.html',
+        context={"user_name": Username,
+                 "fruitpersons": speakerCountry.objects.all(),
+                 "countrylistwithtrue": a,
+                 },
+    )
 
 
 def fruitleader(request):
     userid = request.session.get('munnyid', 'NOT LOGGED IN')
     if not userid == "NOT LOGGED IN":
-        Username = User.objects.get(MUNID=userid).getfullname()
-        return render(
-            request,
-            'fruitleaderboard.html',
-            context={"user_name": Username},
-        )
+        Username = munnyuser.objects.get(MUNID=userid).getfullname()
     else:
         return HttpResponseRedirect('/missingloginpage/')
 
+    scorelist = []
+    fruitlist = munnyuser.objects.all()
+    for i in fruitlist:
+        try:
+            scorelist.append(i)
+        except:
+            pass
+    from operator import methodcaller
+    scorelist = sorted(scorelist, key=lambda obj: obj.getscore(), reverse=True)
+
+
+    return render(
+        request,
+        'fruitleaderboard.html',
+        context={"user_name": Username,
+                 "leaderboard": scorelist},
+
+    )
+
 
 def ticketview(request):
-    if request.POST:
-        print(request)
-        # TODO make ticket!
-        return HttpResponseRedirect('/src/suc/')
+    ticketreplies = list(ticketreply.objects.all())
 
-
-# User cookie
     userid = request.session.get('munnyid', 'NOT LOGGED IN')
     if not userid == "NOT LOGGED IN":
-        Username = User.objects.get(MUNID=userid).getfullname()
+        Username = munnyuser.objects.get(MUNID=userid).getfullname()
+    else:
+        return HttpResponseRedirect('/missingloginpage/')
 
+    if request.method == "POST":
+
+        # Checking if its a reply to a post by ad-staff
+        if 'reply' and 'ticketobject' in request.POST:
+            curUser = munnyuser.objects.get(MUNID=request.session.get('munnyid'))
+            repliedtickettarget = ticket.objects.get(id=request.POST['ticketobject'])
+            replytext = request.POST['reply']
+            t, created = ticketreply.objects.get_or_create(Writer=curUser,
+                                                           Text=replytext,
+                                                           Ticket=repliedtickettarget,
+                                                           )
+
+            t.save()
+
+        # Checking if its a ticket post
+        if 'title' and 'besked' in request.POST:
+            curUser = munnyuser.objects.get(MUNID=request.session.get('munnyid'))
+            title = request.POST['title']
+            bodytext = request.POST['besked']
+            t, created = ticket.objects.get_or_create(Writer=curUser,
+                                                      Title=title,
+                                                      Text=bodytext,
+                                                      )
+
+            t.save()
+
+        return render(request,
+                      'successfullPostPage.html',
+                      context={"user_name": Username},
+                      )
+
+    curUser = munnyuser.objects.get(MUNID=request.session.get('munnyid'))
+    if ticket.objects.filter(Writer=curUser):
+        tickets = ticket.objects.filter(Writer=curUser).order_by('InitDate').reverse()
+    else:
+        tickets = {}
+
+    # TODO clean this section with role choices instead of group models.
+    adstaff = Munnygroup.objects.filter(groupname="adstaff")
+    if request.method == "GET" and curUser.rolegroup_primary == adstaff.last():
+        tickets = ticket.objects.all().order_by('InitDate').reverse()
+        return render(request,
+                      'ticketreader.html',
+                      context={"user_name": Username,
+                               "tickets": tickets,
+                               "ticketreplies": ticketreplies,
+                               },
+                      )
+    else:
         return render(
             request,
             'ticketwriter.html',
             context={"user_name": Username,
+                     "tickets": tickets,
+                     "ticketreplies": ticketreplies,
                      },
         )
-    else:
-        return HttpResponseRedirect('/missingloginpage/')
 
 
 def sessionsview(request):
@@ -84,7 +188,7 @@ def sessionsview(request):
 def friendfinderview(request):
     userid = request.session.get('munnyid', 'NOT LOGGED IN')
     if not userid == "NOT LOGGED IN":
-        Username = User.objects.get(MUNID=userid).getfullname()
+        Username = munnyuser.objects.get(MUNID=userid).getfullname()
     else:
         Username = "NOT LOGGED IN"
 
@@ -93,7 +197,7 @@ def friendfinderview(request):
     return render(
         request,
         'visual.html',
-        context={"users": User.objects.all(),
+        context={"users": munnyuser.objects.all(),
                  "user_name": Username,
                  "facebookaccounts": socaccs,
                  }
@@ -135,4 +239,25 @@ def suc(request):
     return render(
         request,
         'successfullPostPage.html'
+    )
+
+
+def creditsview(request):
+    return render(
+        request,
+        'formal/credits.html'
+    )
+
+
+def TOSview(request):
+    return render(
+        request,
+        'formal/TOS.html'
+    )
+
+
+def PricavyPolicyview(request):
+    return render(
+        request,
+        'formal/Privacy_Policy.html'
     )

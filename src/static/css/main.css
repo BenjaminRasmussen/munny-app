@@ -3,9 +3,8 @@ body, html, .site {
     height: 97%;
     padding: 0;
     background-color: #e3e8f2;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Slabo 27px', serif;
     overflow: hidden;
-
 }
 
 .site {
@@ -17,7 +16,7 @@ body, html, .site {
     grid-template-areas: "whitespaceleft head whitespaceright" "whitespaceleft nav whitespaceright" "whitespaceleft content whitespaceright" "whitespaceleft footer whitespaceright";
 }
 
-@media screen and (max-width: 499px) {
+@media screen and (max-width: 800px) {
     body, html, .site {
         height: 100%;
     }
@@ -69,7 +68,6 @@ body, html, .site {
     background-color: #9EC0F6;
     margin: 0;
     padding: 0;
-    font-family: 'Cambo', serif;
     box-shadow: black;
 }
 
@@ -203,6 +201,10 @@ body, html, .site {
     right: 0;
 }
 
+.credits a{
+    color: #FFC257;
+}
+
 .form-container{
     margin: 2%;
 }
@@ -253,15 +255,11 @@ body, html, .site {
 .fb-realtivewrapper{
     position: relative;
     width: 100%;
-    height: 32px;
 
 }
 
 .fb-absolute{
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
+
     text-align: center;
 
 }

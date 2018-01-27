@@ -1,14 +1,14 @@
 from django.contrib import admin
-from src.models import User, Munnygroup, fruitPerson, fruitVote
+from src.models import munnyuser, Munnygroup, fruitPerson, fruitVote, speakerCountry, ticket, ticketreply
 
 
 # Register your models here.
 
 
-@admin.register(User)
-class UserAdmin(admin.ModelAdmin):
-    list_display = User.list_display
-    fields = User.fields
+@admin.register(munnyuser)
+class munnyuseradmin(admin.ModelAdmin):
+    list_display = munnyuser.list_display
+    fields = munnyuser.fields
 
 
 @admin.register(Munnygroup)
@@ -27,3 +27,21 @@ class fruitPersonAdmin(admin.ModelAdmin):
 class fruitVoteAdmin(admin.ModelAdmin):
     list_display = fruitVote.list_display
     fields = fruitVote.fields
+
+@admin.register(speakerCountry)
+class speakCountryAdmin(admin.ModelAdmin):
+    list_display = speakerCountry.list_display
+    fields = speakerCountry.fields
+
+
+@admin.register(ticket)
+class ticketAdmin(admin.ModelAdmin):
+    list_display = ticket.list_display
+    fields = ticket.fields
+
+
+@admin.register(ticketreply)
+class ticketreplyAdmin(admin.ModelAdmin):
+    list_display = ticketreply.list_display
+    fields = ticketreply.fields
+
