@@ -13,6 +13,28 @@
         .header .logoBottom {
             margin-top: -114px;
         }
+         button{
+            background-color: white;
+            border: 2px solid #FFB757;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            width: 100%;
+        }
+
+        button:hover{
+            text-decoration: none;
+            background-color: #FFB757; /* Green */
+            color: white;
+            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+
+        }
     </style>
 {% endblock %}
 
@@ -21,6 +43,10 @@
 {% endblock %}
 
 {% block content %}
+    <h2>Logout below</h2>
+    <p>This page serves no other purpose but to allow the user to log out of their social accounts. Social accounts
+        inactive for longer than 7 days will be deleted from database.</p>
+
     <form method="post" action="{% url 'account_logout' %}">
         {% csrf_token %}
         {% if redirect_field_value %}
@@ -29,25 +55,5 @@
         <button type="submit">Sign out</button>
     </form>
 
-    {% load account %}
-    {% load socialaccount %}
-    {% user_display user %}
-    {% if user %}
-        {% for account in user.socialaccount %}
-            {{ account.extra_data }}
-        {% endfor %}
-    {% endif %}
-
-    {% for base_account in form.accounts %}
-        {% with base_account.get_provider_account as account %}
-            <div>
-                <label for="id_account_{{ base_account.id }}">
-                    <input id="id_account_{{ base_account.id }}" type="radio" name="account" value="{{ base_account.id }}"/>
-                    <span class="socialaccount_provider {{ base_account.provider }} {{ account.get_brand.id }}">{{account.get_brand.name}}</span>
-                    {{ account }}
-                </label>
-            </div>
-        {% endwith %}
-    {% endfor %}
 
 {% endblock %}
