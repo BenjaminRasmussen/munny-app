@@ -31,14 +31,11 @@
 
     {% load account %}
     {% load socialaccount %}
-    {% user_display user.id %}
+    {% user_display user %}
+    {% if user %}
+        {% for account in user.socialaccount_set.user %}
+            {{ account.extra_data }}
+        {% endfor %}
+    {% endif %}
 
-
-
-    {% load staticfiles %}
-    <div id="fb-root"></div>
-    <script id="allauth-facebook-settings" type="application/json">
-    {{ fb_data }}
-    </script>
-    <script type="text/javascript" src="{% static 'facebook/js/fbconnect.js' %}"></script>
 {% endblock %}
