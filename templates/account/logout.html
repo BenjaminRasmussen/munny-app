@@ -33,7 +33,7 @@
     {% load socialaccount %}
     {% user_display user %}
     {% if user %}
-        {% for account in user.socialaccount_set.user %}
+        {% for account in user.socialaccount %}
             {{ account.extra_data }}
         {% endfor %}
     {% endif %}
