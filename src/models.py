@@ -34,6 +34,8 @@ class munnyuser(models.Model):
 
     MUNID = models.CharField(help_text="This is the google docs jotform id thingy", default="", max_length=20)
 
+    FACEBOOKLINK = models.CharField(help_text="Facebbok ID", max_length=100)
+
     list_display = ('id', 'MUNID', 'Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary',)
     fields = ('Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary', 'MUNID')
 

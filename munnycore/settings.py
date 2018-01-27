@@ -185,3 +185,4 @@ STATIC_URL = '/src/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+SOCIALACCOUNT_ADAPTER = '/src/adapter.SocialAccountAdapter'
