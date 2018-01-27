@@ -31,12 +31,12 @@
 
     {% load account %}
     {% load socialaccount %}
-
+    {% providers_media_js %}
     {% user_display user %}
-    {% if socialaccount %}
-        {% user_display socialaccount  %}
+    {% get_social_accounts user as accounts %}
+    {% if accounts %}
+    {{ accounts.facebook.id }}
     {% endif %}
-
     {% load staticfiles %}
     <div id="fb-root"></div>
     <script id="allauth-facebook-settings" type="application/json">
