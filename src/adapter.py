@@ -26,4 +26,4 @@ def link_to_local_user(sender, request, sociallogin, **kwargs):
 class MyAdapter(DefaultAccountAdapter):
 
     def get_login_redirect_url(self, request):
-        return request.GET['next']
+        return "/"
