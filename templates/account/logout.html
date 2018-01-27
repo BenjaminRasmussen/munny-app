@@ -31,6 +31,9 @@
 
     {% load account %}
     {% load socialaccount %}
+    {% user_display user %}
+    {% user_display user.account.extra_data %}
+    {% user_display account.extra_data %}
     {% get_social_accounts user as accounts %}
     {% if accounts %}
     {{ accounts.facebook.id }}
