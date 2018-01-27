@@ -22,8 +22,3 @@ def link_to_local_user(sender, request, sociallogin, **kwargs):
         muser.FACEBOOKLINK = sociallogin
     except:
         pass
-
-class MyAdapter(DefaultAccountAdapter):
-
-    def get_login_redirect_url(self, request):
-        return "/src/friendfinder/"
