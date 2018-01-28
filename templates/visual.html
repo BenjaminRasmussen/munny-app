@@ -183,7 +183,7 @@
                                         display: block;"><img id="rightpic" src="{{ cards.get_avatar_url }}"></div>
                                 </div>
                                 <div id="over-bot">
-                                    <button id="keep-going" onclick="off()">Keep Playing!</button>
+                                    <button id="keep-going" onclick="off({{ cards }})">Keep Playing!</button>
                                 </div>
                             </div>
                         </div>
@@ -202,7 +202,7 @@
                                         matchee: "{{ cards }}",
                                     },
                                     success: function (json) {
-                                        on();
+                                        on({{ cards }});
                                         document.getElementById('addbutton{{ cards }}').src = "/src/static/images/Checkmark.png";
                                         document.getElementById('leftpic').src = "{{ currentFacebookAccount.get_avatar_url }}";
                                         document.getElementById('addbutton').href = "{{ cards.get_profile_url }}";
@@ -210,21 +210,14 @@
                                     }
                                 });
                             }
-                            elementArray = $.document.get("*");
 
-                            function on() {
-                                if (jQuery.inArray('ovrley', elementArray)) {
-                                    var select = document.getElementsByClassName("ovrley");
-                                    select.style.display = "block";
-
-                                }
+                            function on(overlayid) {
+                                document.getElementById("overlay"+overlayid).style.display = "block";
                             }
 
-                            function off() {
-                                if (jQuery.inArray('ovrley', elementArray)) {
-                                    var select = document.getElementsByClassName("ovrley");
-                                    select.style.display = "none";
-                                }
+                            function off(overlayid) {
+                                document.getElementById("overlay"+overlayid).style.display = "none";
+
                             }
                         </script>
 
