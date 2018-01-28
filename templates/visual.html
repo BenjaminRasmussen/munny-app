@@ -157,9 +157,8 @@
                                             </div>
                                             <div class="float-right">
 
-                                                <button onclick="test('{{ cards.uid }}')">CLICK ME</button>
                                                 <!-- TODO Make this take facebook into and an actual link (not button) -->
-                                                <a rel="external" onclick="test('{{ cards.uid }}')"><img id="buttonforadding{{ cards.uid }}"
+                                                <a rel="external" onClick="document.location.href='site.com'" onclick="test('{{ cards.uid }}')"><img id="buttonforadding{{ cards.uid }}"
                                                                                     src="/src/static/images/Icons/64/ADD.png"></a>
                                             </div>
                                         </div>
@@ -197,6 +196,7 @@
                                     type: "GET",
                                     url: "http://www.app.munny.dk/src/friendfinderajaxcall/",
                                     async: true,
+                                    cache: false,
                                     dataType: "json",
                                     data: {
                                         csrfmiddlewaretoken: "{{ csrf_token }}",
