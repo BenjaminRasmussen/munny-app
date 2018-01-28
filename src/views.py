@@ -328,7 +328,6 @@ def friendfinderajaxcall(request):
 def ajaxcallview(request):
     print("GOT IT")
     message = "HELLO WORLD"
-    print(request.GET['touser'])
     response_data = {}
     try:
         response_data['result'] = 'Success'
