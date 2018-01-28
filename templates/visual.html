@@ -70,7 +70,7 @@
             max-width: 250px;
             border-radius: 50%;
             border: 2px solid white;
-            width:auto;
+            width: 40%;
             height:auto;
         }
 
@@ -114,8 +114,6 @@
             transition-duration: 0.4s;
             box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             width: 80%;
-            user-select: element;
-            pointer-events: auto;
         }
 
     </style>
@@ -159,7 +157,7 @@
                                             </div>
                                             <div class="float-right">
                                                 <!-- TODO Make this take facebook into and an actual link (not button) -->
-                                                <a onclick="javascript:test('{{ cards.uid }}')"><img id="buttonforadding{{ cards.uid }}"
+                                                <a onclick="test('{{ cards.uid }}')"><img id="buttonforadding{{ cards.uid }}"
                                                                                     src="/src/static/images/Icons/64/ADD.png"></a>
                                             </div>
                                         </div>
