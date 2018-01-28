@@ -210,11 +210,16 @@
                             }
 
                             function on() {
-                                document.getElementsByClassName("ovrley").style.display = "block";
+                                if ($.inArray('ovrley', elementArray)) {
+                                    var select = document.getElementsByClassName("ovrley").style.display = "block";
+                                }
                             }
 
                             function off() {
-                                document.getElementsByClassName("ovrley").style.display = "none";
+                                f($.inArray('ovrley', elementArray))
+                                {
+                                    var select = document.getElementsByClassName("ovrley").style.display = "none";
+                                }
                             }
                         </script>
 
