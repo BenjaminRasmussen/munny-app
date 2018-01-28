@@ -29,7 +29,7 @@
             padding: 10px;
         }
 
-        .overlay {
+        .ovrley {
             position: fixed; /* Sit on top of the page content */
             display: none; /* Hidden by default */
             width: 100%; /* Full width (cover the whole page) */
@@ -43,7 +43,7 @@
             cursor: pointer; /* Add a pointer on hover */
         }
 
-        .overlay .overlay-girdcont {
+        .ovrley .overlay-girdcont {
             user-select: none;
             pointer-events: none;
             height: 100%;
@@ -54,11 +54,11 @@
             grid-template-areas: "title" "middle" "bottom";
         }
 
-        .overlay #over-title {
+        .ovrley #over-title {
             grid-area: title;
         }
 
-        .overlay #over-mid {
+        .ovrley #over-mid {
             grid-area: middle;
             display: grid;
             grid-template-rows: 100%;
@@ -66,39 +66,39 @@
             grid-template-areas: "left" "middle" "right";
         }
 
-        .overlay #over-mid #pic img {
+        .ovrley #over-mid #pic img {
             max-width: 100%;
             border-radius: 50%;
             border: 2px solid white;
         }
 
-        .overlay #over-mid #pic .leftpic {
+        .ovrley #over-mid #pic .leftpic {
             grid-row: 1;
             grid-column: 1;
             margin: auto;
             display: block;
         }
 
-        .overlay #over-mid #add {
+        .ovrley #over-mid #add {
             grid-row: 1;
             grid-column: 2;
             margin: auto;
             display: block;
         }
 
-        .overlay #over-mid #pic .rightpic {
+        .ovrley #over-mid #pic .rightpic {
             grid-row: 1;
             grid-column: 3;
             margin: auto;
             display: block;
         }
 
-        .overlay #over-bot {
+        .ovrley #over-bot {
             grid-area: bottom;
 
         }
 
-        .overlay #over-bot button {
+        .ovrley #over-bot button {
             background-color: rgba(0, 0, 0, 0.0);
             border: 2px solid white;
             color: white;
@@ -167,7 +167,7 @@
                             <div class="like"></div>
                             <div class="dislike"></div>
                         </li>
-                        <div class="overlay" id="overlay{{ cards }}">
+                        <div class="ovrley" id="overlay{{ cards }}">
                             <div class="overlay-girdcont">
                                 <div id="over-title"><img src="/src/static/images/match_text.png/" style="max-width: 80%;   display: block;
                                                                                                 margin-left: auto;
@@ -210,11 +210,11 @@
                             }
 
                             function on() {
-                                document.getElementsByClassName("overlay").style.display = "block";
+                                document.getElementsByClassName("ovrley").style.display = "block";
                             }
 
                             function off() {
-                                document.getElementsByClassName("overlay").style.display = "none";
+                                document.getElementsByClassName("ovrley").style.display = "none";
                             }
                         </script>
 
