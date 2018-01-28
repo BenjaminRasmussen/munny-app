@@ -190,6 +190,8 @@ def sessionsview(request):
 
 @login_required
 def friendfinderview(request):
+    if request.user.is_authenticated():
+        user = request.user
     userid = request.session.get('munnyid', 'NOT LOGGED IN')
     if not userid == "NOT LOGGED IN":
         Username = munnyuser.objects.get(MUNID=userid).getfullname()
@@ -198,7 +200,7 @@ def friendfinderview(request):
 
     # GET ALL FB ACCOUNTS
     socaccs = SocialAccount.objects.all()
-    currentsocialaccount = SocialAccount.objects.get(request.user)
+    currentsocialaccount = SocialAccount.objects.get(user)
     return render(
         request,
         'visual.html',
