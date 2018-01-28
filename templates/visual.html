@@ -202,7 +202,7 @@
                                         matchee: "{{ cards.uid }}",
                                     },
                                     success: function (json) {
-                                        on();
+                                        on(json.matchee);
                                         document.getElementById('addbutton{{ cards }}').src = "/src/static/images/Checkmark.png";
                                         document.getElementById('leftpic').src = "{{ currentFacebookAccount.get_avatar_url }}";
                                         document.getElementById('addbutton').href = "{{ cards.get_profile_url }}";
