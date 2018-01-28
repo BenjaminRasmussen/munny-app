@@ -196,8 +196,8 @@
                                     dataType: "json",
                                     data: {
                                         csrfmiddlewaretoken: "{{ csrf_token }}",
-                                        fromuser: "{{ currentFacebookAccount }}",
-                                        touser: "{{ cards }}",
+                                        matcher: "{{ currentFacebookAccount }}",
+                                        matchee: "{{ cards }}",
                                     },
                                     success: function (json) {
                                         on();
