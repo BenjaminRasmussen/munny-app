@@ -191,7 +191,7 @@
                         <script type="text/javascript">
 
                             function test() {
-                                ajax({
+                                $.ajax({
                                     type: "GET",
                                     url: "http://www.app.munny.dk/src/ajaxcall/",
                                     async: true,
@@ -210,9 +210,10 @@
                                     }
                                 });
                             }
+                            elementArray = $.document.get("*");
 
                             function on() {
-                                if ($.inArray('ovrley', elementArray)) {
+                                if (jQuery.inArray('ovrley', elementArray)) {
                                     var select = document.getElementsByClassName("ovrley");
                                     select.style.display = "block";
 
@@ -220,7 +221,7 @@
                             }
 
                             function off() {
-                                if ($.inArray('ovrley', elementArray)) {
+                                if (jQuery.inArray('ovrley', elementArray)) {
                                     var select = document.getElementsByClassName("ovrley");
                                     select.style.display = "none";
                                 }
