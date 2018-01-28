@@ -205,18 +205,16 @@
                                         document.getElementById('leftpic').src = "{{ currentFacebookAccount.get_avatar_url }}";
                                         document.getElementById('addbutton').href = "{{ cards.get_profile_url }}";
                                         document.getElementById('rightpic').src = "{{ cards.get_avatar_url }}";
-
-                                        $('#pendingpic').html(json.message)
                                     }
                                 });
                             }
 
                             function on() {
-                                document.getElementById("overlay").style.display = "block";
+                                document.getElementsByClassName("overlay").style.display = "block";
                             }
 
                             function off() {
-                                document.getElementById("overlay").style.display = "none";
+                                document.getElementsByClassName("overlay").style.display = "none";
                             }
                         </script>
 
