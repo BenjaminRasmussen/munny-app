@@ -44,8 +44,7 @@
         }
 
         .ovrley .overlay-girdcont {
-            user-select: none;
-            pointer-events: none;
+
             height: 100%;
             width: 100%;
             display: grid;
@@ -160,7 +159,7 @@
                                             </div>
                                             <div class="float-right">
                                                 <!-- TODO Make this take facebook into and an actual link (not button) -->
-                                                <a onclick="javascript:test('{{ cards.uid }}')"><img id="addubtton{{ cards }}"
+                                                <a onclick="javascript:test('{{ cards.uid }}')"><img id="buttonforadding{{ cards.uid }}"
                                                                                     src="/src/static/images/Icons/64/ADD.png"></a>
                                             </div>
                                         </div>
@@ -180,7 +179,7 @@
                                     <div class="leftpic" id="pic" style="margin: auto; display: block; right: 0; width: 35%;"><img
                                             id="leftpic"
                                             src="{{ currentFacebookAccount.get_avatar_url }}"></div>
-                                    <div id="add"><a id="addbutton{{ cards }}" href=""><img
+                                    <div id="add"><a id="addbutton{{ cards.uid }}" href=""><img
                                             src="/src/static/images/Icons/64/ADD.png"></a></div>
                                     <div class="rightpic" id="pic" style="margin: auto;
                                         display: block; width: 35%;"><img id="rightpic" src="{{ cards.get_avatar_url }}"></div>
@@ -206,9 +205,9 @@
                                     },
                                     success: function (json) {
                                         on(json.matchee);
-                                        document.getElementById('addbutton{{ cards }}').src = "/src/static/images/Checkmark.png";
+                                        document.getElementById('buttonforadding'+matchee).src = "/src/static/images/Checkmark.png";
                                         document.getElementById('leftpic').src = "{{ currentFacebookAccount.get_avatar_url }}";
-                                        document.getElementById('addbutton').href = "{{ cards.get_profile_url }}";
+                                        document.getElementById('addbutton'+matchee).href = "{{ cards.get_profile_url }}";
                                         document.getElementById('rightpic').src = "{{ cards.get_avatar_url }}";
                                     }
                                 });
