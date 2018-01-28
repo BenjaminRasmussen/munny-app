@@ -297,7 +297,7 @@ def friendfinderajaxcall(request):
     matcher = request.GET['matcher']
     matchee = request.GET['matchee']
 
-    fmatchee = SocialAccount.objects.get(user=matchee)
+    fmatchee = SocialAccount.objects.get(uid=matchee)
 
     a = friendfindermatch.objects.create(matcher=matcher,
                                          matchee=matchee)
