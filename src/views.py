@@ -297,7 +297,7 @@ def friendfinderajaxcall(request):
     matcher = request.GET['matcher']
     matchee = request.GET['matchee']
 
-    fmatchee = SocialAccount.objects.get(matchee)
+    fmatchee = SocialAccount.objects.get(user=matchee)
 
     a = friendfindermatch.objects.create(matcher=matcher,
                                          matchee=matchee)
@@ -309,22 +309,16 @@ def friendfinderajaxcall(request):
 
     response_data = {}
     try:
-        response_data['matchee_id'] = fmatchee
-        response_data['getMatchStatus'] = "true"
-        return HttpResponse(json.dumps(response_data), content_type="applicatoin/json")
-    except:
-        pass
-    try:
         if friendfindermatch.objects.get(matcher__exact=matchee,
                                          matchee__exact=matcher, ):
             response_data['matchee_id'] = fmatchee
             response_data['getMatchStatus'] = "true"
-            return HttpResponse(json.dumps(response_data), content_type="applicatoin/json")
         else:
             response_data['getMatchStatus'] = "false"
-            return HttpResponse(json.dumps(response_data), content_type="applications/json")
     except:
         pass
+    return HttpResponse(json.dumps(response_data), content_type="application/json")
+
 
 
 def ajaxcallview(request):
