@@ -157,7 +157,7 @@
                                             </div>
                                             <div class="float-right">
                                                 <!-- TODO Make this take facebook into and an actual link (not button) -->
-                                                <a onclick="javascript:test()"><img id="addubtton{{ cards }}"
+                                                <a onclick="javascript:test('{{ cards }}')"><img id="addubtton{{ cards }}"
                                                                                     src="/src/static/images/Icons/64/ADD.png"></a>
                                             </div>
                                         </div>
@@ -190,7 +190,7 @@
 
                         <script type="text/javascript">
 
-                            function test() {
+                            function test(matchee) {
                                 $.ajax({
                                     type: "GET",
                                     url: "http://www.app.munny.dk/src/friendfinderajaxcall/",
