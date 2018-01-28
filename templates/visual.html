@@ -152,12 +152,12 @@
                                     <div class="image-text-area-container">
                                         <div class="float-container">
                                             <div class="float-left">
-                                                <p style="font-size: 18px;"><b>{{ cards.user }}</b></p>
+                                                <p style="font-size: 18px;"><b>{{ cards }}</b></p>
                                                 <p></p>
                                             </div>
                                             <div class="float-right">
                                                 <!-- TODO Make this take facebook into and an actual link (not button) -->
-                                                <a onclick="javascript:test('{{ cards }}')"><img id="addubtton{{ cards }}"
+                                                <a onclick="javascript:test('{{ cards.uid }}')"><img id="addubtton{{ cards }}"
                                                                                     src="/src/static/images/Icons/64/ADD.png"></a>
                                             </div>
                                         </div>
