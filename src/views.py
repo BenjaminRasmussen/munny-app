@@ -311,7 +311,7 @@ def friendfinderajaxcall(request):
     try:
         if True or friendfindermatch.objects.get(matcher__exact=matchee,
                                          matchee__exact=matcher, ):
-            response_data['matchee'] = fmatchee.uid
+            response_data['matchee'] = fmatchee.user
             response_data['getMatchStatus'] = "true"
             print(response_data)
         else:
