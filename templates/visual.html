@@ -171,7 +171,8 @@
                             <div class="overlay-girdcont">
                                 <div id="over-title"><img src="/src/static/images/match_text.png/" style="max-width: 80%;   display: block;
                                                                                                 margin-left: auto;
-                                                                                    margin-right: auto; margin-top: 50px;"></div>
+                                                                                    margin-right: auto; margin-top: 50px;">
+                                </div>
                                 <div id="over-mid">
                                     <div class="leftpic" id="pic" style="margin: auto; display: block; right: 0;"><img
                                             id="leftpic"
@@ -188,8 +189,9 @@
                         </div>
 
                         <script type="text/javascript">
+
                             function test() {
-                                $.ajax({
+                                ajax({
                                     type: "GET",
                                     url: "http://www.app.munny.dk/src/ajaxcall/",
                                     async: true,
@@ -218,7 +220,7 @@
                             }
 
                             function off() {
-                                if($.inArray('ovrley', elementArray)){
+                                if ($.inArray('ovrley', elementArray)) {
                                     var select = document.getElementsByClassName("ovrley");
                                     select.style.display = "none";
                                 }
