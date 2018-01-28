@@ -200,7 +200,7 @@ def friendfinderview(request):
 
     # GET ALL FB ACCOUNTS
     socaccs = SocialAccount.objects.all()
-    currentsocialaccount = SocialAccount.objects.get(user)
+    currentsocialaccount = SocialAccount.objects.get(user=user)
     return render(
         request,
         'visual.html',
