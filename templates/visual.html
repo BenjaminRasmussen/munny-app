@@ -175,11 +175,11 @@
                                 <div id="over-mid">
                                     <div class="leftpic" id="pic" style="margin: auto; display: block; right: 0;"><img
                                             id="leftpic"
-                                            src="/src/static/images/munnytemplogo.png"></div>
+                                            src="{{ currentFacebookAccount.get_avatar_url }}"></div>
                                     <div id="add"><a id="addbutton" href=""><img
                                             src="/src/static/images/munnytemplogo.png"></a></div>
                                     <div class="rightpic" id="pic" style="margin: auto;
-                                        display: block;"><img id="rightpic" src="/src/static/images/munnytemplogo.png"></div>
+                                        display: block;"><img id="rightpic" src="{{ cards.get_avatar_url }}"></div>
                                 </div>
                                 <div id="over-bot">
                                     <button id="keep-going" onclick="off()">Keep Playing!</button>
