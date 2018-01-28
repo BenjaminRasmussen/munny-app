@@ -211,14 +211,16 @@
 
                             function on() {
                                 if ($.inArray('ovrley', elementArray)) {
-                                    var select = document.getElementsByClassName("ovrley").style.display = "block";
+                                    var select = document.getElementsByClassName("ovrley");
+                                    select.style.display = "block";
+
                                 }
                             }
 
                             function off() {
-                                f($.inArray('ovrley', elementArray))
-                                {
-                                    var select = document.getElementsByClassName("ovrley").style.display = "none";
+                                f($.inArray('ovrley', elementArray)){
+                                    var select = document.getElementsByClassName("ovrley");
+                                    select.style.display = "none";
                                 }
                             }
                         </script>
