@@ -51,6 +51,15 @@ Feature: Speakercountry, Fruitperson, user???
       Delegate, Ambassador, Judge/ & Advocate:
         "Country list"
 
+Feature: Tinder-like cards (friend-finder is the official word to use)
+    !!!: Abandon all hope ye who enter here :!!!
+    This feature took way longer time than expected and even i am not quite sure of how it really works. All i know is
+    that it does, kinda. If you break it you fix it, dont call me to have it fixed because there i no way im ever
+    touching this feature ever again.
+    Here are some common mistakes in the setup that will lead to bugs if not done correctly. Note this does not involve
+    changing any code other than settings.py.
+
+
 
     href="/accounts/facebook/login/?process=login"
 

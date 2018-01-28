@@ -124,7 +124,6 @@ class speakerCountry(models.Model):
         return self.country
 
 
-
 class fruitVote(models.Model):
     voter = models.ForeignKey(munnyuser, related_name="votee")
     votee = models.ForeignKey(speakerCountry, related_name="voter")
@@ -163,6 +162,14 @@ class ticketreply(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+
+class friendfindermatch(models.Model):
+    matcher = models.CharField(max_length=100, help_text="The person who is trying to match to someone")
+    matchee = models.CharField(max_length=100, help_text="The person who is the 'matcher' is trying to match with")
+
+    list_display = ('id', 'matcher', 'matchee')
+    fields = ('matcher', 'matchee')
 
 
 @receiver(models.signals.post_save, sender=munnyuser)

@@ -24,5 +24,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^missingloginpage/', views.missingloginpage, name="missingloginpage"),
     url(r'^accounts/', include('allauth.urls')),
+    url(r'^/accounts/facebook/login/callback/', RedirectView.as_view(url='/src/', permanent=True)),
 
 ]

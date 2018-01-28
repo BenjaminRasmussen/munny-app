@@ -1,3 +1,5 @@
+import json
+
 from allauth.socialaccount import providers
 from allauth.socialaccount.models import SocialAccount
 from allauth.socialaccount.providers.facebook.provider import FacebookProvider, GRAPH_API_URL
@@ -5,7 +7,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.sites import requests
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from src.models import munnyuser, fruitPerson, speakerCountry, ticket, ticketreply, Munnygroup, fruitVote
+from django.views.decorators.csrf import csrf_exempt
+
+from src.models import munnyuser, fruitPerson, speakerCountry, ticket, ticketreply, Munnygroup, fruitVote, \
+    friendfindermatch
 from allauth import socialaccount
 
 
@@ -97,7 +102,6 @@ def fruitleader(request):
             pass
     from operator import methodcaller
     scorelist = sorted(scorelist, key=lambda obj: obj.getscore(), reverse=True)
-
 
     return render(
         request,
@@ -194,12 +198,14 @@ def friendfinderview(request):
 
     # GET ALL FB ACCOUNTS
     socaccs = SocialAccount.objects.all()
+    currentsocialaccount = request.user
     return render(
         request,
         'visual.html',
         context={"users": munnyuser.objects.all(),
                  "user_name": Username,
                  "facebookaccounts": socaccs,
+                 "currentFacebookAccount": currentsocialaccount
                  }
     )
 
@@ -261,3 +267,68 @@ def PricavyPolicyview(request):
         request,
         'formal/Privacy_Policy.html'
     )
+
+
+from django.shortcuts import *
+from django.template import RequestContext
+
+
+@csrf_exempt
+def testview(request):
+    currentsocialaccount = request.user
+
+    if request.method == "POST":
+        form = request.POST
+
+        message = "HELLO WORLD"
+
+        return HttpResponse(json.dumps({'message': message}))
+
+    return render(request,
+                  'test.html',
+                  context={"currentuser": currentsocialaccount}
+                  )
+
+
+def friendfinderajaxcall(request):
+    # Data passed on from the AJAX call
+    matcher = request.GET['matcher']
+    matchee = request.GET['matchee']
+
+    fmatchee = SocialAccount.objects.get(matchee)
+
+    a = friendfindermatch.objects.create(matcher=matcher,
+                                         matchee=matchee)
+    a.save()
+
+    print("matcher: " + str(matcher),
+          "matchee: " + str(matchee),
+          "fmatchee: " + str(fmatchee))
+
+    response_data = {}
+    try:
+        if friendfindermatch.objects.get(matcher__exact=matchee,
+                                         matchee__exact=matcher, ):
+            response_data['matchee_id'] = fmatchee
+            response_data['getMatchStatus'] = "true"
+            return HttpResponse(json.dumps(response_data), content_type="applicatoin/json")
+        else:
+            response_data['getMatchStatus'] = "false"
+            return HttpResponse(json.dumps(response_data), content_type="applications/json")
+    except:
+        pass
+
+
+def ajaxcallview(request):
+    print("GOT IT")
+    message = "HELLO WORLD"
+    print(request.GET['touser'])
+    response_data = {}
+    try:
+        response_data['result'] = 'Success'
+        response_data['message'] = message
+    except:
+        response_data['result'] = 'oh no!'
+        response_data['message'] = "The subprocess module did not run the script correctly!"
+
+    return HttpResponse(json.dumps(response_data), content_type="application/json")

@@ -24,5 +24,10 @@ urlpatterns = [
     url(r'^PrivacyPolicy/', views.PricavyPolicyview, name="PrivacyPolicy"),
     url(r'^TOS', views.TOSview, name="TOS"),
 
+    # AJAX call urls
+    url(r'^test/', views.testview, name="test"),
+    url(r'^ajaxcall/', views.ajaxcallview, name="ajaxcall"),
+    url(r'^friendfinderajaxcall/', views.friendfinderajaxcall, name="friendfinderajaxcall")
+
 
 ]

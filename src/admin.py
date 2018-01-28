@@ -1,5 +1,6 @@
 from django.contrib import admin
-from src.models import munnyuser, Munnygroup, fruitPerson, fruitVote, speakerCountry, ticket, ticketreply
+from src.models import munnyuser, Munnygroup, fruitPerson, fruitVote, speakerCountry, ticket, ticketreply, \
+    friendfindermatch
 
 
 # Register your models here.
@@ -44,4 +45,10 @@ class ticketAdmin(admin.ModelAdmin):
 class ticketreplyAdmin(admin.ModelAdmin):
     list_display = ticketreply.list_display
     fields = ticketreply.fields
+
+
+@admin.register(friendfindermatch)
+class friendfindermatch(admin.ModelAdmin):
+    list_display = friendfindermatch.list_display
+    fields = friendfindermatch.fields
 
