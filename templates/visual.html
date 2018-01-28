@@ -177,7 +177,7 @@
                                     <div class="leftpic" id="pic" style="margin: auto; display: block; right: 0;"><img
                                             id="leftpic"
                                             src="{{ currentFacebookAccount.get_avatar_url }}"></div>
-                                    <div id="add"><a id="addbutton" href=""><img
+                                    <div id="add"><a id="addbutton{{ cards }}" href=""><img
                                             src="/src/static/images/Icons/64/ADD.png"></a></div>
                                     <div class="rightpic" id="pic" style="margin: auto;
                                         display: block;"><img id="rightpic" src="{{ cards.get_avatar_url }}"></div>
@@ -202,7 +202,7 @@
                                         matchee: "{{ cards.uid }}",
                                     },
                                     success: function (json) {
-                                        on(data.matchee);
+                                        on();
                                         document.getElementById('addbutton{{ cards }}').src = "/src/static/images/Checkmark.png";
                                         document.getElementById('leftpic').src = "{{ currentFacebookAccount.get_avatar_url }}";
                                         document.getElementById('addbutton').href = "{{ cards.get_profile_url }}";
