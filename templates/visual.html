@@ -199,7 +199,7 @@
                                     data: {
                                         csrfmiddlewaretoken: "{{ csrf_token }}",
                                         matcher: "{{ currentFacebookAccount.uid }}",
-                                        matchee: "{{ cards.uid }}",
+                                        matchee: matchee,
                                     },
                                     success: function (json) {
                                         on(json.matchee);
