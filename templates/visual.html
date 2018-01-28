@@ -28,6 +28,7 @@
             position: absolute;
             padding: 10px;
         }
+
         #overlay {
             position: fixed; /* Sit on top of the page content */
             display: none; /* Hidden by default */
@@ -97,7 +98,7 @@
 
         }
 
-        #overlay #over-bot button{
+        #overlay #over-bot button {
             background-color: rgba(0, 0, 0, 0.0);
             border: 2px solid white;
             color: white;
@@ -156,7 +157,8 @@
                                             </div>
                                             <div class="float-right">
                                                 <!-- TODO Make this take facebook into and an actual link (not button) -->
-                                                <a onclick="javascript:test()"><img id="addubtton{{ cards }}" src="/src/static/images/munnytemplogo.png"></a>
+                                                <a onclick="javascript:test()"><img id="addubtton{{ cards }}"
+                                                                                    src="/src/static/images/munnytemplogo.png"></a>
                                             </div>
                                         </div>
                                     </div>
@@ -165,20 +167,24 @@
                             <div class="like"></div>
                             <div class="dislike"></div>
                         </li>
-
+                        </ul>
                         <div id="overlay{{ cards }}">
                             <div class="overlay-girdcont">
                                 <div id="over-title"><img src="/src/static/images/match_text.png/" style="max-width: 80%;   display: block;
     margin-left: auto;
     margin-right: auto; margin-top: 50px;"></div>
                                 <div id="over-mid">
-                                    <div class="leftpic" id="pic" style="margin: auto; display: block; right: 0;"><img id="leftpic"
-                                                                                                                       src="/src/static/images/munnytemplogo.png"></div>
-                                    <div id="add"><a id="addbutton" href=""><img src="/src/static/images/munnytemplogo.png"></a></div>
+                                    <div class="leftpic" id="pic" style="margin: auto; display: block; right: 0;"><img
+                                            id="leftpic"
+                                            src="/src/static/images/munnytemplogo.png"></div>
+                                    <div id="add"><a id="addbutton" href=""><img
+                                            src="/src/static/images/munnytemplogo.png"></a></div>
                                     <div class="rightpic" id="pic" style="margin: auto;
             display: block;"><img id="rightpic" src="/src/static/images/munnytemplogo.png"></div>
                                 </div>
-                                <div id="over-bot"><button id="keep-going" onclick="off()">Keep Playing!</button></div>
+                                <div id="over-bot">
+                                    <button id="keep-going" onclick="off()">Keep Playing!</button>
+                                </div>
                             </div>
                         </div>
 
@@ -197,14 +203,15 @@
                                     success: function (json) {
                                         on();
                                         document.getElementById('addbutton{{ cards }}').src = "/src/static/images/Checkmark.png";
-                                        document.getElementById('leftpic').src ="{{ currentFacebookAccount.get_avatar_url }}";
-                                        document.getElementById('addbutton').href="{{ cards.get_profile_url }}";
+                                        document.getElementById('leftpic').src = "{{ currentFacebookAccount.get_avatar_url }}";
+                                        document.getElementById('addbutton').href = "{{ cards.get_profile_url }}";
                                         document.getElementById('rightpic').src = "{{ cards.get_avatar_url }}";
 
                                         $('#pendingpic').html(json.message)
                                     }
                                 });
                             }
+
                             function on() {
                                 document.getElementById("overlay").style.display = "block";
                             }
@@ -215,23 +222,22 @@
                         </script>
                         </div>
                     {% endfor %}
-                </ul>
 
-            </div>
         </div>
+    </div>
 
 
 
-        <!-- jQuery lib -->
-        <script type="text/javascript" src="/src/static/js/js/jquery.min.js"></script>
-        <!-- transform2d lib -->
-        <script type="text/javascript" src="/src/static/js/js/jquery.transform2d.js"></script>
-        <!-- jTinder lib -->
-        <script type="text/javascript" src="/src/static/js/js/jquery.jTinder.js"></script>
-        <!-- jTinder initialization script -->
-        <script type="text/javascript" src="/src/static/js/js/main.js"></script>
+    <!-- jQuery lib -->
+    <script type="text/javascript" src="/src/static/js/js/jquery.min.js"></script>
+    <!-- transform2d lib -->
+    <script type="text/javascript" src="/src/static/js/js/jquery.transform2d.js"></script>
+    <!-- jTinder lib -->
+    <script type="text/javascript" src="/src/static/js/js/jquery.jTinder.js"></script>
+    <!-- jTinder initialization script -->
+    <script type="text/javascript" src="/src/static/js/js/main.js"></script>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
 {% endblock %}
