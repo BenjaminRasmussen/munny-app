@@ -28,6 +28,92 @@
             position: absolute;
             padding: 10px;
         }
+        #overlay {
+            position: fixed; /* Sit on top of the page content */
+            display: none; /* Hidden by default */
+            width: 100%; /* Full width (cover the whole page) */
+            height: 100%; /* Full height (cover the whole page) */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+            z-index: 999; /* Specify a stack order in case you're using a different order for other elements */
+            cursor: pointer; /* Add a pointer on hover */
+        }
+
+        #overlay .overlay-girdcont {
+            user-select: none;
+            pointer-events: none;
+            height: 100%;
+            width: 100%;
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr;
+            grid-template-columns: 100%;
+            grid-template-areas: "title" "middle" "bottom";
+        }
+
+        #overlay #over-title {
+            grid-area: title;
+        }
+
+        #overlay #over-mid {
+            grid-area: middle;
+            display: grid;
+            grid-template-rows: 100%;
+            grid-template-columns: 1fr auto 1fr;
+            grid-template-areas: "left" "middle" "right";
+        }
+
+        #overlay #over-mid #pic img {
+            max-width: 100%;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        #overlay #over-mid #pic .leftpic {
+            grid-row: 1;
+            grid-column: 1;
+            margin: auto;
+            display: block;
+        }
+
+        #overlay #over-mid #add {
+            grid-row: 1;
+            grid-column: 2;
+            margin: auto;
+            display: block;
+        }
+
+        #overlay #over-mid #pic .rightpic {
+            grid-row: 1;
+            grid-column: 3;
+            margin: auto;
+            display: block;
+        }
+
+        #overlay #over-bot {
+            grid-area: bottom;
+
+        }
+
+        #overlay #over-bot button{
+            background-color: rgba(0, 0, 0, 0.0);
+            border: 2px solid white;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            margin: auto;
+            display: block;
+            font-size: 24px;
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            width: 80%;
+            user-select: element;
+            pointer-events: auto;
+        }
 
     </style>
 {% endblock %}
@@ -46,6 +132,8 @@
     <script type="text/javascript" src="/src/static/js/js/main.js"></script>
 
     <div id="log"></div>
+    <button onclick="on()"></button>
+
     <div class="wrap">
         <input type="button" value="Refresh Page" onClick="window.location.reload()">
 
@@ -68,7 +156,7 @@
                                             </div>
                                             <div class="float-right">
                                                 <!-- TODO Make this take facebook into and an actual link (not button) -->
-                                                <a><img src="/src/static/images/munnytemplogo.png"></a>
+                                                <a onclick="javascript:test()"><img id="addubtton{{ cards }}" src="/src/static/images/munnytemplogo.png"></a>
                                             </div>
                                         </div>
                                     </div>
@@ -77,11 +165,62 @@
                             <div class="like"></div>
                             <div class="dislike"></div>
                         </li>
+
+                        <div id="overlay{{ cards }}">
+                            <div class="overlay-girdcont">
+                                <div id="over-title"><img src="/src/static/images/match_text.png/" style="max-width: 80%;   display: block;
+    margin-left: auto;
+    margin-right: auto; margin-top: 50px;"></div>
+                                <div id="over-mid">
+                                    <div class="leftpic" id="pic" style="margin: auto; display: block; right: 0;"><img id="leftpic"
+                                                                                                                       src="/src/static/images/munnytemplogo.png"></div>
+                                    <div id="add"><a id="addbutton" href=""><img src="/src/static/images/munnytemplogo.png"></a></div>
+                                    <div class="rightpic" id="pic" style="margin: auto;
+            display: block;"><img id="rightpic" src="/src/static/images/munnytemplogo.png"></div>
+                                </div>
+                                <div id="over-bot"><button id="keep-going" onclick="off()">Keep Playing!</button></div>
+                            </div>
+                        </div>
+
+                        <script type="text/javascript">
+                            function test() {
+                                $.ajax({
+                                    type: "GET",
+                                    url: "http://127.0.0.1:8000/src/ajaxcall/",
+                                    async: true,
+                                    dataType: "json",
+                                    data: {
+                                        csrfmiddlewaretoken: "{{ csrf_token }}",
+                                        fromuser: "{{ currentFacebookAccount }}",
+                                        touser: "{{ cards }}",
+                                    },
+                                    success: function (json) {
+                                        on();
+                                        document.getElementById('addbutton{{ cards }}').src = "/src/static/images/Checkmark.png";
+                                        document.getElementById('leftpic').src ="{{ currentFacebookAccount.get_avatar_url }}";
+                                        document.getElementById('addbutton').href="{{ cards.get_profile_url }}";
+                                        document.getElementById('rightpic').src = "{{ cards.get_avatar_url }}";
+
+                                        $('#pendingpic').html(json.message)
+                                    }
+                                });
+                            }
+                            function on() {
+                                document.getElementById("overlay").style.display = "block";
+                            }
+
+                            function off() {
+                                document.getElementById("overlay").style.display = "none";
+                            }
+                        </script>
+                        </div>
                     {% endfor %}
                 </ul>
 
             </div>
         </div>
+
+
 
         <!-- jQuery lib -->
         <script type="text/javascript" src="/src/static/js/js/jquery.min.js"></script>
@@ -92,5 +231,7 @@
         <!-- jTinder initialization script -->
         <script type="text/javascript" src="/src/static/js/js/main.js"></script>
 
-    </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
 {% endblock %}

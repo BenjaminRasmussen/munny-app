@@ -306,6 +306,7 @@ def friendfinderajaxcall(request):
           "fmatchee: " + str(fmatchee))
 
     response_data = {}
+    return HttpResponse(json.dumps(response_data), content_type="applicatoin/json")
     try:
         if friendfindermatch.objects.get(matcher__exact=matchee,
                                          matchee__exact=matcher, ):
