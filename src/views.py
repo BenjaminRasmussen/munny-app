@@ -269,7 +269,7 @@ def friendfinderview(request):
                  "facebookaccounts": taccs,
                  "currentFacebookAccount": currentsocialaccount,
                  "confirmedmatches":  confrimedmatches,
-                 "confirmedmatcheslen": confrimedmatches.__len__(),
+                 "confirmedmatcheslen": passableobjects.__len__(),
                  }
     )
 
