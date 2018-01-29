@@ -207,6 +207,7 @@ def friendfinderview(request):
         try:
             if friendfindermatch.objects.get(matcher=i, matchee=currentsocialaccount.uid):
                 confrimedmatches.append(friendfindermatch.objects.get(matcher=i, matchee=currentsocialaccount.uid))
+                print(confrimedmatches)
         except:
             pass
 
