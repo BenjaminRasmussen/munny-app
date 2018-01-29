@@ -252,15 +252,18 @@ def friendfinderview(request):
     passableobjects = []
     for i in temp[currentsocialaccount.uid]:
         passableobjects.append(SocialAccount.objects.get(uid=i))
+    taccs = []
+    for i in list(socaccs):
+       if not i.__contains__(list(passableobjects)):
+           taccs.append(i)
 
-    testaccs = list(socaccs).remove(list(passableobjects))
 
     return render(
         request,
         'visual.html',
         context={"users": munnyuser.objects.all(),
                  "user_name": Username,
-                 "facebookaccounts": testaccs,
+                 "facebookaccounts": taccs,
                  "currentFacebookAccount": currentsocialaccount,
                  "confirmedmatches":  confrimedmatches,
                  "confirmedmatcheslen": confrimedmatches.__len__(),
