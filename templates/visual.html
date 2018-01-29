@@ -114,13 +114,13 @@
             width: 80%;
         }
 
-        .container-button-container{
+        .container-button-container {
             position: relative;
             margin: 0 auto;
             display: block;
         }
 
-        .button-container{
+        .button-container {
             z-index: 1;
             position: absolute;
             left: 0;
@@ -155,19 +155,23 @@
 
     <div id="log"></div>
     <div class="wrap">
-    <div class ="container-button-container">
-        <div class="button-container">
-            <button class="Reloadbutton" type="button" value="Refresh Page" onClick="window.location.reload()">Reload
-                page
-            </button>
-            <a href="{% url 'src:matches' %}">See Friend-Finder Matches</a>
-        </div></div>
+        <div class="container-button-container">
+            <div class="button-container">
+                <button class="Reloadbutton" type="button" value="Refresh Page" onClick="window.location.reload()">
+                    Reload
+                    page
+                </button>
+                <a href="{% url 'src:matches' %}">See Friend-Finder Matches</a>
+            </div>
+        </div>
         <div class="td-cards">
             <div id="tinderslide">
                 <!-- TODO  Make this the acutal number of matches... and a link to such page using view context.-->
-                <a href="{% url 'src:matches' %}">
-                    <div class="circleBase"><p>{{ confirmedmatcheslen }}</p></div>
-                </a>
+                {% if confirmedmatcheslen != 0 %}
+                    <a href="{% url 'src:matches' %}">
+                        <div class="circleBase"><p>{{ confirmedmatcheslen }}</p></div>
+                    </a>
+                {% endif %}
                 <ul>
                     {% for cards in facebookaccounts %}
                         <li>
