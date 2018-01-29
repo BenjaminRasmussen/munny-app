@@ -34,7 +34,7 @@
                     <img src="{{ card.get_avatar_url }}" style="height: 64px; max-width: 85px;">
                 </td>
                 <td>
-            {{ card.__str__ }}
+            {{ card.extra_data.first_name }}
                 </td>
                 <td>
                     <a href="https://www.facebook.com/app_scoped_user_id/{{ card.uid }}'/'">Add here</a>
