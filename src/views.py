@@ -215,7 +215,7 @@ def friendfinderview(request):
     for i in socaccs:
         try:
             for j in matchlist:
-                if i.uid == j.matcher or currentsocialaccount.uid == j.matcher:
+                if i.uid == j.matcher or currentsocialaccount.uid == i.uid:
                     pass
                 else:
                     if not newsocaccs.__contains__(i):
