@@ -92,12 +92,6 @@ ul {
     position: relative;
     overflow: visible !important;
     list-style-type: none;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
 
 .td-card {
@@ -136,12 +130,7 @@ ul {
     font-size: 24px;
     cursor: pointer;
     font-weight: bold;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+
 }
 
 .circleBase p{
@@ -223,7 +212,6 @@ ul {
 .td-card img {
     width: 100%;
     border-radius: 6px;
-    pointer-events: none;
     height: auto;
     display: block;
     margin-left: auto;
