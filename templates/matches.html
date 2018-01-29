@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base_generic.html" %}
+{% block headstyle %}
+<style>
+    .header {
+        font-size: 14px;
+    }
 
-</body>
-</html>
+    .header .logoTop {
+        margin-bottom: -108px;
+    }
+
+    .header .logoBottom {
+        margin-top: -110px;
+    }
+
+</style>
+{% endblock %}
+
+{% block header %}
+    <h1>MUNNY<br>FRIENDS</h1>
+{% endblock %}
+
+{% block content %}
+    {% for card in confirmedobjects %}
+        {{ card }}
+    {% endfor %}
+{% endblock %}

@@ -282,13 +282,21 @@ def matchesview(request):
     except:
         pass
 
+    # from matches to fb users
+    confirmedobjects = []
+    try:
+        for i in confrimedmatches:
+            confirmedobjects.append(SocialAccount.objects.get(uid=i.matcher))
+    except:
+        pass
+
     return render(request,
                   'matches.html',
                   context={"users": munnyuser.objects.all(),
                            "user_name": Username,
                            "facebookaccounts": socaccs,
                            "currentFacebookAccount": currentsocialaccount,
-                           "confirmedmatches": confrimedmatches,
+                           "confirmedmatches": confirmedobjects,
                            })
 
 
