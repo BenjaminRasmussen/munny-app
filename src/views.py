@@ -262,7 +262,7 @@ def matchesview(request):
             if friendfindermatch.objects.get(matcher=i, matchee=currentsocialaccount.uid):
                 confrimedmatches.append(friendfindermatch.objects.get(matcher=i, matchee=currentsocialaccount.uid))
         except:
-            confrimedmatches = ["WTF"]
+            pass
 
     return render(request,
                   'matches.html',
