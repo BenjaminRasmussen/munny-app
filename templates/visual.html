@@ -114,6 +114,17 @@
             width: 80%;
         }
 
+        .button-container{
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 15%;
+            margin: auto;
+            z-index: -10;
+        }
+
+
     </style>
 {% endblock %}
 
@@ -132,11 +143,12 @@
 
     <div id="log"></div>
     <div class="wrap">
-        <button class="Reloadbutton" type="button" value="Refresh Page" onClick="window.location.reload()">Reload page
-        </button>
-        <button class="Matchbutton" type="button" href="/src/friendmatches">See Friend-Finder Matches</button>
-        {{ confirmedmatches }} <br>
-        {{ facebookaccounts }}
+        <div class="button-container">
+            <button class="Reloadbutton" type="button" value="Refresh Page" onClick="window.location.reload()">Reload
+                page
+            </button>
+            <button class="Matchbutton" type="button" href="/src/friendmatches" value="See Friend-Finder Matches">See Friend-Finder Matches</button>
+        </div>
         <div class="td-cards">
             <div id="tinderslide">
                 <!-- TODO  Make this the acutal number of matches... and a link to such page using view context.-->
