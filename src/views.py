@@ -205,8 +205,12 @@ def friendfinderview(request):
     matchlist = list(friendfindermatch.objects.values_list("matcher", flat=True))
     for i in matchlist:
         try:
-            confrimedmatches.append(friendfindermatch.objects.get(matcher=i, matchee=currentsocialaccount.uid))
-            print(confrimedmatches)
+            if friendfindermatch.objects.get(matcher=i, matchee=currentsocialaccount.uid):
+                confrimedmatches.append(friendfindermatch.objects.get(matcher=i, matchee=currentsocialaccount.uid))
+                print(confrimedmatches)
+            else:
+                print(i)
+                print(currentsocialaccount.uid)
         except:
             pass
 
