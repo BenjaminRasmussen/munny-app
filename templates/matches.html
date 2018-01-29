@@ -24,7 +24,21 @@
         a img{
             border-radius: unset;
         }
+        table {
+            width: 100%;
+            table-layout: auto;
 
+        }
+
+        table, th, td, tr {
+            border: 0;
+            border-collapse: collapse;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #ccc;
+            border-collapse: collapse;
+        }
     </style>
 {% endblock %}
 
