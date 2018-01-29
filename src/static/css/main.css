@@ -210,6 +210,7 @@ body, html, .site {
 }
 
 .credits{
+    grid-area: content;
     position: absolute;
     width: 200px;
     margin: auto;
