@@ -258,6 +258,7 @@ def friendfinderview(request):
             taccs.append(i)
     try:
         taccs.remove(currentsocialaccount)
+        passableobjects.remove(currentsocialaccount)
     except:
         pass
 
