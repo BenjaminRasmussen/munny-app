@@ -243,8 +243,11 @@
                             function off(overlayid) {
                                 document.getElementById("overlay"+overlayid).style.display = "none";
                             }
-                            $("#addfirendbutton").trigger('click');
-                            $("addfirendbutton").trigger('click');
+
+                            $('#addfirendbutton').on('tap', function(e){
+                                $("#addfirendbutton").trigger('click');
+                            });
+
 
                         </script>
 
