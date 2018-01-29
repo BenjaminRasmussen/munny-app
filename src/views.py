@@ -233,6 +233,12 @@ def friendfinderview(request):
         if not temp[delvt].__contains__(pin):
             temp[delvt].append(pin)
 
+    confobj = []
+    for i in list(SocialAccount.objects.values_list("uid", flat=True)):
+        for j in temp[i]:
+            if temp[j].__contains__(i):
+                confobj.append(j)
+
 
 
 
@@ -248,7 +254,7 @@ def friendfinderview(request):
         'visual.html',
         context={"users": munnyuser.objects.all(),
                  "user_name": Username,
-                 "facebookaccounts": temp,
+                 "facebookaccounts": confobj,
                  "currentFacebookAccount": currentsocialaccount,
                  "confirmedmatches":  confrimedmatches,
                  "confirmedmatcheslen": confrimedmatches.__len__(),
