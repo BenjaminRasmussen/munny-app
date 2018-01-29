@@ -114,6 +114,12 @@
             width: 80%;
         }
 
+        .container-button-container{
+            position: relative;
+            margin: 0 auto;
+            display: block;
+        }
+
         .button-container{
             z-index: 1;
             position: absolute;
@@ -149,12 +155,13 @@
 
     <div id="log"></div>
     <div class="wrap">
+    <div class ="container-button-container">
         <div class="button-container">
             <button class="Reloadbutton" type="button" value="Refresh Page" onClick="window.location.reload()">Reload
                 page
             </button>
-            <button class="Matchbutton" type="button" href="/src/friendmatches" value="See Friend-Finder Matches">See Friend-Finder Matches</button>
-        </div>
+            <button class="Matchbutton" type="button" href="{% url 'src:matches' %}" value="See Friend-Finder Matches">See Friend-Finder Matches</button>
+        </div></div>
         <div class="td-cards">
             <div id="tinderslide">
                 <!-- TODO  Make this the acutal number of matches... and a link to such page using view context.-->
