@@ -230,7 +230,7 @@ def friendfinderview(request):
     newsocaccs = []
     temp = defaultdict(list)
     for delvt, pin in zip(matchmatcherlist, matchmatcheelist):
-        if not temp[delvt].contains(pin):
+        if not temp[delvt].__contains__(pin):
             temp[delvt].append(pin)
 
 
