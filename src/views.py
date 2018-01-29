@@ -175,15 +175,14 @@ def ticketview(request):
     except:
         pass
 
-    else:
-        return render(
-            request,
-            'ticketwriter.html',
-            context={"user_name": Username,
-                     "tickets": tickets,
-                     "ticketreplies": ticketreplies,
-                     },
-        )
+    return render(
+        request,
+        'ticketwriter.html',
+        context={"user_name": Username,
+                    "tickets": tickets,
+                    "ticketreplies": ticketreplies,
+                    },
+    )
 
 
 def sessionsview(request):
