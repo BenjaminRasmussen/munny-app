@@ -315,7 +315,10 @@ def matchesview(request):
     for i in temp[currentsocialaccount.uid]:
         passableobjects.append(SocialAccount.objects.get(uid=i))
 
-
+    try:
+        passableobjects.remove(currentsocialaccount)
+    except:
+        pass
 
     return render(request,
                   'matches.html',
