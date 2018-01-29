@@ -254,9 +254,12 @@ def friendfinderview(request):
         passableobjects.append(SocialAccount.objects.get(uid=i))
     taccs = []
     for i in list(socaccs):
-       if not list(passableobjects).__contains__(i):
-           taccs.append(i)
-
+        if not list(passableobjects).__contains__(i):
+            taccs.append(i)
+    try:
+        taccs.remove(currentsocialaccount)
+    except:
+        pass
 
     return render(
         request,
@@ -280,29 +283,39 @@ def matchesview(request):
         Username = munnyuser.objects.get(MUNID=userid).getfullname()
     else:
         Username = "NOT LOGGED IN"
-
     socaccs = SocialAccount.objects.all()
     currentsocialaccount = SocialAccount.objects.get(user=request.user)
+    matchmatcherlist = list(friendfindermatch.objects.values_list("matcher", flat=True))
+    matchmatcheelist = list(friendfindermatch.objects.values_list("matchee", flat=True))
+    # Get one way match, then search or other way match.
+    # GET ALL FB ACCOUNTS THAT ARE PASSABLE set(a) & set(b)
 
-    # Get number of mutual matches
-    confrimedmatches = []
-    matchlist = list(friendfindermatch.objects.values_list("matcher", flat=True))
-    for i in matchlist:
-        try:
-            if friendfindermatch.objects.get(matcher=i, matchee=currentsocialaccount.uid):
-                confrimedmatches.append(friendfindermatch.objects.get(matcher=i, matchee=currentsocialaccount.uid))
-        except:
-            pass
+    # Init user mutuality dict
+    newsocaccs = []
+    temp = defaultdict(list)
+    for delvt, pin in zip(matchmatcherlist, matchmatcheelist):
+        if not temp[delvt].__contains__(pin):
+            temp[delvt].append(pin)
 
-    matchfbobject = []
+    # weed out mutuals
+    confobj = []
+    for i in temp[currentsocialaccount.uid]:
+        for j in temp[i]:
+            if not confobj.__contains__(j):
+                confobj.append(j)
+
+    # delete self from mutual list
     try:
-        for i in confrimedmatches:
-            try:
-                matchfbobject.append(SocialAccount.objects.get(uid=i.matcher))
-            except:
-                pass
+        confobj.remove(currentsocialaccount.uid)
     except:
         pass
+
+    # conver to socialaccount
+    passableobjects = []
+    for i in temp[currentsocialaccount.uid]:
+        passableobjects.append(SocialAccount.objects.get(uid=i))
+
+
 
     return render(request,
                   'matches.html',
@@ -310,7 +323,7 @@ def matchesview(request):
                            "user_name": Username,
                            "facebookaccounts": socaccs,
                            "currentFacebookAccount": currentsocialaccount,
-                           "confirmedmatches": matchfbobject,
+                           "confirmedmatches": passableobjects,
                            })
 
 
