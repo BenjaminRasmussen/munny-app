@@ -223,8 +223,8 @@ def friendfinderview(request):
         except:
             pass
 
-    matchmatcherlist = list(str(friendfindermatch.objects.values_list("matcher", flat=True)))
-    matchmatcheelist = list(str(friendfindermatch.objects.values_list("matchee", flat=True)))
+    matchmatcherlist = list(friendfindermatch.objects.values_list("matcher", flat=True))
+    matchmatcheelist = list(friendfindermatch.objects.values_list("matchee", flat=True))
     # Get one way match, then search or other way match.
     # GET ALL FB ACCOUNTS THAT ARE PASSABLE set(a) & set(b)
     newsocaccs = []
