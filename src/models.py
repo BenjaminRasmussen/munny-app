@@ -144,7 +144,7 @@ class fruitVote(models.Model):
     voter = models.ForeignKey(munnyuser, related_name="votee")
     votee = models.ForeignKey(speakerCountry, related_name="voter")
     bool = models.BooleanField(help_text="Indicates what the voter voted", default=True)
-    InitDate = models.DateTimeField(default="Jan. 31, 2018, noon", help_text="Date and time of creation")
+    InitDate = models.DateTimeField(default="2018-01-31 12:00", help_text="Date and time of creation")
 
     list_display = ('id', 'voter', 'votee', 'bool', 'InitDate',)
     fields = ('voter', 'votee', 'bool')
