@@ -219,7 +219,7 @@ def friendfinderview(request):
                  "user_name": Username,
                  "facebookaccounts": newsocaccs,
                  "currentFacebookAccount": currentsocialaccount,
-                 "confirmedmatches": confrimedmatches,
+                 "confirmedmatches":  matchlist,
                  "confirmedmatcheslen": confrimedmatches.__len__(),
                  }
     )
