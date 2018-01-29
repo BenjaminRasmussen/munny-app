@@ -198,7 +198,7 @@ def friendfinderview(request):
     else:
         Username = "NOT LOGGED IN"
     socaccs = SocialAccount.objects.all()
-    currentsocialaccount = SocialAccount.objects.get(user=user)
+    currentsocialaccount = SocialAccount.objects.get(user=request.user)
 
     # Get number of mutual matches
     confrimedmatches = []
@@ -248,7 +248,7 @@ def matchesview(request):
         Username = "NOT LOGGED IN"
 
     socaccs = SocialAccount.objects.all()
-    currentsocialaccount = SocialAccount.objects.get(user=user)
+    currentsocialaccount = SocialAccount.objects.get(user=request.user)
 
     # Get number of mutual matches
     confrimedmatches = []
