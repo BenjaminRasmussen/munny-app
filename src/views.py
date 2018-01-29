@@ -267,9 +267,12 @@ def matchesview(request):
     matchfbobject = []
     try:
         for i in confrimedmatches:
-            matchfbobject.append(SocialAccount.objects.get(uid=i.matcher))
+            try:
+                matchfbobject.append(SocialAccount.objects.get(uid=i.matcher))
+            except:
+                pass
     except:
-        matchfbobject = ["Big error, contact admin"]
+        pass
 
     return render(request,
                   'matches.html',
