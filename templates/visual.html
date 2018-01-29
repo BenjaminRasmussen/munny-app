@@ -115,13 +115,19 @@
         }
 
         .button-container{
+            z-index: 1;
             position: absolute;
             left: 0;
             right: 0;
-            bottom: 0;
-            top: 15%;
-            margin: auto;
-            z-index: -10;
+            top: 100px;
+            margin: 0 auto;
+            padding: 15px 45px;
+            width: 150px;
+            border: 1px solid #000;
+            border-radius: 5px;
+            background-color: transparent;
+            color: #000;
+            transition: all .3s;
         }
 
 
@@ -159,7 +165,6 @@
                     {% for cards in facebookaccounts %}
                         <li>
                             <div class="td-card" style="overflow: visible;">
-
                                 <div class="image"><img src="{{ cards.get_avatar_url }}"
                                                         style="border-bottom: black 2px solid;">
                                     <div class="image-text-area-container">
