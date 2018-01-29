@@ -214,17 +214,27 @@ def friendfinderview(request):
         except:
             pass
 
+    confirmedobjects = []
+    matchobjectlist = friendfindermatch.objects.all()
+    for i in matchobjectlist:
+        try:
+            confirmedobjects.append(friendfindermatch.objects.get(matcher=i.matchee, matchee=i.matcher))
+        except:
+            pass
+
+
     # GET ALL FB ACCOUNTS THAT ARE PASSABLE
     newsocaccs = []
     try:
-        for i in confrimedmatches or range(1):
+        for i in matchobjectlist or range(1):
             for j in socaccs:
-                if i.matcher==j.uid:
-                    pass
-                else:
+                if i.matchee==j.uid:
                     newsocaccs.append(j)
+                else:
+                    pass
     except:
-        newsocaccs = socaccs
+        pass
+
 
     # Remove own account
     try:
