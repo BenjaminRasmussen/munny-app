@@ -223,7 +223,7 @@ def friendfinderview(request):
 
     # Remove own account
     try:
-        newsocaccs.get(currentsocialaccount).delete()
+        newsocaccs.reverse(currentsocialaccount)
     except:
         pass
 
