@@ -202,7 +202,7 @@ def friendfinderview(request):
 
     # Get number of mutual matches
     confrimedmatches = []
-    matchlist = list(friendfindermatch.objects.filter(matcher=currentsocialaccount).values_list("MATCHEE"))
+    matchlist = list(friendfindermatch.objects.filter(matcher=currentsocialaccount).values_list("matchee"))
     for i in matchlist:
         try:
             if friendfindermatch.objects.get(matcher=i, matchee=currentsocialaccount):
