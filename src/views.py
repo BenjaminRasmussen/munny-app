@@ -211,16 +211,16 @@ def friendfinderview(request):
             pass
     # GET ALL FB ACCOUNTS THAT ARE PASSABLE
     newsocaccs = []
-    for i in socaccs:
-        try:
-            for j in confrimedmatches:
-                if i.uid == j.matcher or currentsocialaccount.uid == i.uid:
+    try:
+        for i in confrimedmatches:
+            for j in list(socaccs):
+                if i.matcher == j.uid:
                     pass
                 else:
-                    if not newsocaccs.__contains__(i):
-                        newsocaccs.append(i)
-        except:
-            newsocaccs = socaccs
+                    if not newsocaccs.__contains__(j):
+                        newsocaccs.append(j)
+    except:
+        newsocaccs = socaccs
 
 
     return render(
