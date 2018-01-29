@@ -483,5 +483,4 @@ def user_signed_up_(request, user, sociallogin=None, **kwargs):
             user.first_name = sociallogin.account.extra_data['first_name']
             user.last_name = sociallogin.account.extra_data['last_name']
 
-
         user.save()

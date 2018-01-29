@@ -215,7 +215,7 @@
                                         display: block;"><img id="rightpic" src="{{ cards.get_avatar_url }}"></div>
                                 </div>
                                 <div id="over-bot">
-                                    <button id="keep-going" onclick="off('{{ cards }}')">Keep Playing!</button>
+                                    <button id="keep-going" onclick="off('{{ cards }}');e_preventDefault()">Keep Playing!</button>
                                 </div>
                             </div>
                         </div>
