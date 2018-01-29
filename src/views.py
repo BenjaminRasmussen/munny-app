@@ -1,4 +1,5 @@
 import json
+from collections import defaultdict
 
 from allauth.socialaccount import providers
 from allauth.socialaccount.models import SocialAccount
@@ -222,19 +223,19 @@ def friendfinderview(request):
         except:
             pass
 
-
-    # GET ALL FB ACCOUNTS THAT ARE PASSABLE
+    matchmatcherlist = list(str(friendfindermatch.objects.values_list("matcher", flat=True)))
+    matchmatcheelist = list(str(friendfindermatch.objects.values_list("matchee", flat=True)))
+    # Get one way match, then search or other way match.
+    # GET ALL FB ACCOUNTS THAT ARE PASSABLE set(a) & set(b)
     newsocaccs = []
-    try:
-        for i in matchobjectlist or range(1):
-            for j in socaccs:
-                if i.matchee==j.uid and j.uid == i.matcher:
-                    if not newsocaccs.__contains__(j):
-                        newsocaccs.append(j)
-                else:
-                    pass
-    except:
-        pass
+    temp = defaultdict(list)
+    for delvt, pin in zip(matchmatcherlist, matchmatcheelist):
+        if not temp[delvt].contains(pin):
+            temp[delvt].append(pin)
+
+
+
+
 
     # Remove own account
     try:
@@ -247,7 +248,7 @@ def friendfinderview(request):
         'visual.html',
         context={"users": munnyuser.objects.all(),
                  "user_name": Username,
-                 "facebookaccounts": newsocaccs,
+                 "facebookaccounts": temp,
                  "currentFacebookAccount": currentsocialaccount,
                  "confirmedmatches":  confrimedmatches,
                  "confirmedmatcheslen": confrimedmatches.__len__(),
