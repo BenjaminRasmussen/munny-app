@@ -210,7 +210,19 @@ def friendfinderview(request):
         except:
             pass
     # GET ALL FB ACCOUNTS THAT ARE PASSABLE
-    newsocaccs = socaccs
+    newsocaccs = []
+    try:
+        for i in confrimedmatches:
+            for j in socaccs:
+                if i.matcher==j.uid:
+                    pass
+                else:
+                    newsocaccs.append(j)
+    except:
+        newsocaccs = socaccs
+        newsocaccs.get(currentsocialaccount).delete()
+
+
 
     return render(
         request,
@@ -219,7 +231,7 @@ def friendfinderview(request):
                  "user_name": Username,
                  "facebookaccounts": newsocaccs,
                  "currentFacebookAccount": currentsocialaccount,
-                 "confirmedmatches":  matchlist,
+                 "confirmedmatches":  confrimedmatches,
                  "confirmedmatcheslen": confrimedmatches.__len__(),
                  }
     )
