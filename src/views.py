@@ -228,7 +228,7 @@ def friendfinderview(request):
     try:
         for i in matchobjectlist or range(1):
             for j in socaccs:
-                if i.matchee==j.uid:
+                if i.matchee==j.uid and j.uid == i.matcher:
                     if not newsocaccs.__contains__(j):
                         newsocaccs.append(j)
                 else:
