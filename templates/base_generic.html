@@ -17,7 +17,8 @@
 
     <link href="https://fonts.googleapis.com/css?family=Cambo" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Fira+Sans|Playfair+Display|Slabo+27px|Source+Sans+Pro" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Fira+Sans|Playfair+Display|Slabo+27px|Source+Sans+Pro"
+          rel="stylesheet">
     {% load static %}
     <title>Munny App by Benjamin Rasmussen</title>
     <link rel="stylesheet" href="/src/static/css/main.css">
@@ -26,7 +27,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/src/static/js/tinder.css">
     <meta name="viewport" content="width=device-width"/>
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css"/>
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 
@@ -44,9 +45,9 @@
         <div class="header">
 
             {% if user.is_authenticated %}
-            <div class="left">
-                <div class="cont"><p><a href="{% url "account_logout" %}">Sign out</a></p></div>
-            </div>
+                <div class="left">
+                    <div class="cont"><p><a href="{% url "account_logout" %}">Sign out</a></p></div>
+                </div>
             {% endif %}
 
             <div class="center">
@@ -72,32 +73,28 @@
                         <img class="munnylogo"
                              src="/src/static/images/smolLogo-e1489176034914.png"
                              style="
-                    display: block;
-                    justify-content: center !important;
-                    align-content: center !important;
-                    text-align: center !important;
-                    margin: auto !important;
-                    padding: 0 !important;
-                    height: 64px;
-                    width: 64px;">
+                                display: block;
+                                justify-content: center !important;
+                                align-content: center !important;
+                                text-align: center !important;
+                                margin: auto !important;
+                                padding: 0 !important;
+                                height: 64px;
+                                width: 64px;">
                         <div class="credit-text-container" style="    border-bottom: solid 1px gray">
                         </div>
                         <p style="
-                text-align: center;
-                  font-size: 11px;
-                  color: dimgray;
-                  margin-top: 5px;
-                    ">MUNNY <a href={% url 'admin:index' %}>Web-App</a> Proudly presented by <br> Benjamin P.
+                            text-align: center;
+                              font-size: 11px;
+                              color: dimgray;
+                              margin-top: 5px;
+                        ">MUNNY <a href={% url 'admin:index' %}>Web-App</a> Proudly presented by <br> Benjamin P.
                             Lykke Rasmussen & <a href="{% url 'src:credits' %}">(co)</a><br>
-                            <a
-                                    href="{% url 'src:TOS' %}">Legal & TOS</a> and <a
-                                    href="{% url 'src:PrivacyPolicy' %}">Privacy
-                                Policy </a>
-                        </p>
-
-                        <br>
+                            <a href="{% url 'src:TOS' %}">Legal & TOS</a> and <a href="{% url 'src:PrivacyPolicy' %}">Privacy
+                                Policy </a></p><br>
                     </div>
                 </div>
+
             </div>
         </div>
         <div class="nav-bar">
