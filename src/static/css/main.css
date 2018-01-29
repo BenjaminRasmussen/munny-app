@@ -202,9 +202,10 @@ body, html, .site {
 }
 
 .credits-wrapper{
-    position: relative !important;
+    position: relative;
     left: 0 !important;
     right: 0 !important;
+    top: 50px;
     margin: auto !important;
 
 }
