@@ -34,10 +34,10 @@
                     <img src="{{ card.get_avatar_url }}" style="height: 64px; max-width: 85px;">
                 </td>
                 <td>
-            {{ card.extra_data.first_name }}
+            {{ card.extra_data.first_name }} {{ cards.extra_data.last_name }}
                 </td>
                 <td>
-                    <a href="https://www.facebook.com/app_scoped_user_id/{{ card.uid }}'/'">Add here</a>
+                    <a href="https://www.facebook.com/app_scoped_user_id/{{ card.uid }}'/'"><img src="/src/static/images/Icons/64/ADD.png"></a>
                 </td>
             </tr>
         {% endfor %}
