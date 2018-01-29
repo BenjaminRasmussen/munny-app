@@ -234,9 +234,9 @@ def friendfinderview(request):
             temp[delvt].append(pin)
 
     confobj = []
-    for i in list(SocialAccount.objects.values_list("uid", flat=True)):
+    for i in temp[currentsocialaccount.uid]:
         for j in temp[i]:
-            if temp[j].__contains__(i):
+            if not confobj.__contains__(j):
                 confobj.append(j)
 
 
