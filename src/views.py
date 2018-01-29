@@ -204,11 +204,8 @@ def friendfinderview(request):
     confrimedmatches = []
     matchlist = list(friendfindermatch.objects.filter(matcher=currentsocialaccount.uid))
     for i in matchlist:
-        try:
-            if friendfindermatch.objects.get(matcher=i.uid, matchee=currentsocialaccount.uid):
-                confrimedmatches.append(friendfindermatch.objects.get(matcher=i.uid, matchee=currentsocialaccount.uid))
-        except:
-            confrimedmatches = ["im broken"]
+        if friendfindermatch.objects.get(matcher=i.uid, matchee=currentsocialaccount.uid):
+            confrimedmatches.append(friendfindermatch.objects.get(matcher=i.uid, matchee=currentsocialaccount.uid))
 
     # GET ALL FB ACCOUNTS THAT ARE PASSABLE
     newsocaccs = []
