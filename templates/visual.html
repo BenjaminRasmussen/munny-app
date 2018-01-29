@@ -133,15 +133,14 @@
     <script type="text/javascript" src="/src/static/js/js/main.js"></script>
 
     <div id="log"></div>
-    <button onclick="on()"></button>
-
     <div class="wrap">
-        <input type="button" value="Refresh Page" onClick="window.location.reload()">
+        <button class="Reloadbutton" type="button" value="Refresh Page" onClick="window.location.reload()">Reload page</button>
+        <button class="Matchbutton" type="button" href="/src/friendmatches">See Friend-Finder Matches</button>
 
         <div class="td-cards">
             <div id="tinderslide">
                 <!-- TODO  Make this the acutal number of matches... and a link to such page using view context.-->
-                <div class="circleBase"><p>7</p></div>
+                <a href="{% url 'src:matches' %}"><div class="circleBase"><p>{{ confirmedmatcheslen }}</p></div></a>
                 <ul>
                     {% for cards in facebookaccounts %}
                         <li>

@@ -197,19 +197,77 @@ def friendfinderview(request):
         Username = munnyuser.objects.get(MUNID=userid).getfullname()
     else:
         Username = "NOT LOGGED IN"
-
-    # GET ALL FB ACCOUNTS
     socaccs = SocialAccount.objects.all()
     currentsocialaccount = SocialAccount.objects.get(user=user)
+
+    # Get number of mutual matches
+    confrimedmatches = []
+    matchlist = list(friendfindermatch.objects.filter(MATCHER=currentsocialaccount).values_list("MATCHEE"))
+    for i in matchlist:
+        try:
+            if friendfindermatch.objects.get(MATCHER=i, MATCHEE=currentsocialaccount):
+                confrimedmatches.append(friendfindermatch.objects.get(MATCHER=i, MATCHEE=currentsocialaccount).matchee)
+        except:
+            pass
+
+    # GET ALL FB ACCOUNTS THAT ARE PASSABLE
+    newsocaccs = []
+    for i in socaccs:
+        try:
+            for j in matchlist:
+                if i.uid == j or currentsocialaccount.uid == j:
+                    pass
+                else:
+                    if not newsocaccs.__contains__(i):
+                        newsocaccs.append(i)
+        except:
+            newsocaccs = socaccs
+
+
     return render(
         request,
         'visual.html',
         context={"users": munnyuser.objects.all(),
                  "user_name": Username,
-                 "facebookaccounts": socaccs,
-                 "currentFacebookAccount": currentsocialaccount
+                 "facebookaccounts": newsocaccs,
+                 "currentFacebookAccount": currentsocialaccount,
+                 "confirmedmatches": confrimedmatches,
+                 "confirmedmatcheslen": confrimedmatches.__len__(),
                  }
     )
+
+
+@login_required
+def matchesview(request):
+    if request.user.is_authenticated():
+        user = request.user
+    userid = request.session.get('munnyid', 'NOT LOGGED IN')
+    if not userid == "NOT LOGGED IN":
+        Username = munnyuser.objects.get(MUNID=userid).getfullname()
+    else:
+        Username = "NOT LOGGED IN"
+
+    socaccs = SocialAccount.objects.all()
+    currentsocialaccount = SocialAccount.objects.get(user=user)
+
+    # Get number of mutual matches
+    confrimedmatches = []
+    matchlist = list(friendfindermatch.objects.filter(MATCHER=currentsocialaccount).values_list("MATCHEE"))
+    for i in matchlist:
+        try:
+            if friendfindermatch.objects.get(MATCHER=i, MATCHEE=currentsocialaccount):
+                confrimedmatches.append(friendfindermatch.objects.get(MATCHER=i, MATCHEE=currentsocialaccount).matchee)
+        except:
+            pass
+
+    return render(request,
+                  'matches.html',
+                  context={"users": munnyuser.objects.all(),
+                           "user_name": Username,
+                           "facebookaccounts": socaccs,
+                           "currentFacebookAccount": currentsocialaccount,
+                           "confirmedmatches": confrimedmatches,
+                           })
 
 
 def missingloginpage(request):
@@ -310,7 +368,7 @@ def friendfinderajaxcall(request):
     response_data = {}
     try:
         if True or friendfindermatch.objects.get(matcher__exact=matchee,
-                                         matchee__exact=matcher, ):
+                                                 matchee__exact=matcher, ):
             response_data['matchee'] = str(fmatchee)
             response_data['getMatchStatus'] = "true"
             print(response_data)
@@ -319,7 +377,6 @@ def friendfinderajaxcall(request):
     except:
         pass
     return HttpResponse(json.dumps(response_data), content_type="application/json")
-
 
 
 def ajaxcallview(request):

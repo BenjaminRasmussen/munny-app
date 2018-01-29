@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^missingloginpage/', views.missingloginpage, name="missingloginpage"),
     url(r'^friendfinder/', views.friendfinderview, name="friendfinderview"),
     url(r'^suc/', views.suc, name="suc"),
+    url(r'^matches/', views.matchesview, name="matches"),
 
     # Legal pages
     url(r'^credits/', views.creditsview, name="credits"),
