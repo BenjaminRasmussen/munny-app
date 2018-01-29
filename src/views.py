@@ -251,7 +251,7 @@ def friendfinderview(request):
     # conver to socialaccount
     passableobjects = []
     for i in temp[currentsocialaccount.uid]:
-        passableobjects.append(SocialAccount.objects.get(i))
+        passableobjects.append(SocialAccount.objects.get(uid=i))
 
     return render(
         request,
