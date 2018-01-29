@@ -42,7 +42,9 @@
                     <img src="{{ card.get_avatar_url }}" style="height: 64px; max-width: 85px;">
                 </td>
                 <td>
-            {{ card.Extra_Data.name }} {{ cards.extra_data.last_name }}
+                    {{ card.account.extra_data.name }}
+                    {{ card.extra_data.name }}
+            {{ card.Extra_data.name }} {{ cards.extra_data.last_name }}
                 </td>
                 <td>
                     <a href="https://www.facebook.com/app_scoped_user_id/{{ card.uid }}/"><img src="/src/static/images/Icons/64/ADD.png"></a>
