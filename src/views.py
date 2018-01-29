@@ -229,12 +229,12 @@ def friendfinderview(request):
         for i in matchobjectlist or range(1):
             for j in socaccs:
                 if i.matchee==j.uid:
-                    newsocaccs.append(j)
+                    if not newsocaccs.__contains__(j):
+                        newsocaccs.append(j)
                 else:
                     pass
     except:
         pass
-
 
     # Remove own account
     try:
