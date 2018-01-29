@@ -244,9 +244,13 @@
                                 document.getElementById("overlay"+overlayid).style.display = "none";
                             }
 
+                            $('#addfirendbutton').bind('vclick', function(e){
+                                $("#addfirendbutton").trigger('click');
+                            });
                             $('#addfirendbutton').on('vclick', function(e){
                                 $("#addfirendbutton").trigger('click');
                             });
+
 
 
                         </script>
