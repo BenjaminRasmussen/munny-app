@@ -204,9 +204,11 @@ def friendfinderview(request):
     confrimedmatches = []
     matchlist = list(friendfindermatch.objects.all().values_list("matcher"))
     for i in matchlist:
-        if friendfindermatch.objects.get(matcher=i, matchee=str(currentsocialaccount.uid)):
-            confrimedmatches.append(friendfindermatch.objects.get(matcher=i, matchee=str(currentsocialaccount.uid)))
-
+        try:
+            if friendfindermatch.objects.get(matcher=i, matchee=str(currentsocialaccount.uid)):
+                confrimedmatches.append(friendfindermatch.objects.get(matcher=i, matchee=str(currentsocialaccount.uid)))
+        except:
+            confrimedmatches.append("Invalid Query")
     # GET ALL FB ACCOUNTS THAT ARE PASSABLE
     newsocaccs = []
     for i in socaccs:
