@@ -161,7 +161,7 @@ def ticketview(request):
 
     # TODO clean this section with role choices instead of group models.
     try:
-        adstaff = munnyuser.objects.filter(rolegroup_primary=munnyuser.ADSTAFF, userid=userid)
+        adstaff = munnyuser.objects.get(rolegroup_primary=munnyuser.ADSTAFF, userid=userid)
 
         if request.method == "GET" and adstaff:
             tickets = ticket.objects.all().order_by('InitDate').reverse()
