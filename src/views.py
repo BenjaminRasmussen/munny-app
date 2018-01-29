@@ -235,12 +235,13 @@ def friendfinderview(request):
         if not temp[delvt].__contains__(pin):
             temp[delvt].append(pin)
 
-    # weed out mutuals
+    # weed out mutuals TODO THIS DOSENT WEEK OUT MUTUALS; IT EXTRACTS THE SUBARRAY
     confobj = []
     for i in temp[currentsocialaccount.uid]:
         for j in temp[i]:
-            if not confobj.__contains__(j):
-                confobj.append(j)
+            if i == j:
+                if not confobj.__contains__(i):
+                    confobj.append(i)
 
     # delete self from mutual list
     try:
@@ -253,6 +254,7 @@ def friendfinderview(request):
     for i in temp[currentsocialaccount.uid]:
         passableobjects.append(SocialAccount.objects.get(uid=i))
     taccs = []
+
     for i in list(socaccs):
         if not list(passableobjects).__contains__(i):
             taccs.append(i)
@@ -272,7 +274,7 @@ def friendfinderview(request):
                  "user_name": Username,
                  "facebookaccounts": taccs,
                  "currentFacebookAccount": currentsocialaccount,
-                 "confirmedmatches":  passableobjects,
+                 "confirmedmatches": passableobjects,
                  "confirmedmatcheslen": passableobjects.__len__(),
                  }
     )
@@ -477,7 +479,6 @@ def user_signed_up_(request, user, sociallogin=None, **kwargs):
     '''
     if sociallogin:
         # Extract first / last names from social nets and store on User record
-
 
         if sociallogin.account.provider == 'facebook':
             user.first_name = sociallogin.account.extra_data['first_name']
