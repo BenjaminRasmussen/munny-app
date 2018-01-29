@@ -1,20 +1,20 @@
 {% extends "base_generic.html" %}
 
 {% block headstyle %}
-<style>
-    .header {
-        font-size: 14px;
-    }
+    <style>
+        .header {
+            font-size: 14px;
+        }
 
-    .header .logoTop {
-        margin-bottom: -114px;
-    }
+        .header .logoTop {
+            margin-bottom: -114px;
+        }
 
-    .header .logoBottom {
-        margin-top: -116px;
-    }
+        .header .logoBottom {
+            margin-top: -116px;
+        }
 
-</style>
+    </style>
 {% endblock %}
 
 {% block header %}
@@ -22,7 +22,24 @@
 {% endblock %}
 
 {% block content %}
-    {% for card in confirmedmatches %}
-        {{ card }}
-    {% endfor %}
+    <table>
+        <tr>
+            <th>Avatar</th>
+            <th>Name</th>
+            <th style="text-align: right">Add button?</th>
+        </tr>
+        {% for card in confirmedmatches %}
+            <tr>
+                <td>
+                    <img src="{{ card.get_avatar_url }}" style="height: 64px; max-width: 85px;">
+                </td>
+                <td>
+                    <p href="{{ card.all.0.extra_data.name }}"></p>
+                </td>
+                <td>
+                    <a href="https://www.facebook.com/app_scoped_user_id/{{ card.uid }}'/'></a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}
