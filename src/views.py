@@ -209,6 +209,7 @@ def friendfinderview(request):
                 confrimedmatches.append(friendfindermatch.objects.get(matcher=i, matchee=currentsocialaccount.uid))
         except:
             pass
+
     # GET ALL FB ACCOUNTS THAT ARE PASSABLE
     newsocaccs = []
     try:
@@ -226,9 +227,6 @@ def friendfinderview(request):
         newsocaccs.remove(currentsocialaccount)
     except:
         pass
-
-
-
 
     return render(
         request,
@@ -258,13 +256,31 @@ def matchesview(request):
 
     # Get number of mutual matches
     confrimedmatches = []
-    matchlist = list(friendfindermatch.objects.filter(matcher=currentsocialaccount).values_list("MATCHEE"))
+    matchlist = list(friendfindermatch.objects.values_list("matcher", flat=True))
     for i in matchlist:
         try:
-            if friendfindermatch.objects.get(matcher=i, matchee=currentsocialaccount):
-                confrimedmatches.append(friendfindermatch.objects.get(matcher=i, matchee=currentsocialaccount).matchee)
+            if friendfindermatch.objects.get(matcher=i, matchee=currentsocialaccount.uid):
+                confrimedmatches.append(friendfindermatch.objects.get(matcher=i, matchee=currentsocialaccount.uid))
         except:
             pass
+
+    # GET ALL FB ACCOUNTS THAT ARE PASSABLE
+    newsocaccs = []
+    try:
+        for i in confrimedmatches:
+            for j in socaccs:
+                if i.matcher==j.uid:
+                    pass
+                else:
+                    newsocaccs.append(j)
+    except:
+        newsocaccs = socaccs
+
+    # Remove own account
+    try:
+        newsocaccs.remove(currentsocialaccount)
+    except:
+        pass
 
     return render(request,
                   'matches.html',
