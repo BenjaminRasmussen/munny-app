@@ -133,8 +133,8 @@ class speakerCountry(models.Model):
     fruitsentiment = models.BooleanField(help_text="Change this sentiment after the fact", default=None)
     voteEndTime = models.DateTimeField(help_text="Date and time of creation")
 
-    list_display = ('id', 'country', 'countryflag', 'fruitsentiment')
-    fields = ('country', 'countryflag', 'fruitsentiment',)
+    list_display = ('id', 'country', 'countryflag', 'fruitsentiment', 'voteEndTime')
+    fields = ('country', 'countryflag', 'fruitsentiment', 'voteEndTime',)
 
     def __str__(self):
         return self.country
@@ -146,7 +146,7 @@ class fruitVote(models.Model):
     bool = models.BooleanField(help_text="Indicates what the voter voted", default=True)
     InitDate = models.DateTimeField(auto_now=True, help_text="Date and time of creation")
 
-    list_display = ('id', 'voter', 'votee', 'bool')
+    list_display = ('id', 'voter', 'votee', 'bool', 'InitDate',)
     fields = ('voter', 'votee', 'bool')
 
     @staticmethod
@@ -161,7 +161,7 @@ class ticket(models.Model):
     Writer = models.ForeignKey(munnyuser)
     InitDate = models.DateTimeField(auto_now=True, help_text="Date and time of creation")
 
-    list_display = ('id', 'Title', 'InitDate', 'Text', 'Writer',)
+    list_display = ('id', 'Title', 'InitDate', 'Text', 'Writer', 'InitDate')
     fields = ('Title', 'Text')
 
     def __str__(self):
