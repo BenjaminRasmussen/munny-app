@@ -296,7 +296,7 @@ def matchesview(request):
                            "user_name": Username,
                            "facebookaccounts": socaccs,
                            "currentFacebookAccount": currentsocialaccount,
-                           "confirmedmatches": confirmedobjects,
+                           "confirmedmatches": confrimedmatches,
                            })
 
 
