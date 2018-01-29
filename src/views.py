@@ -253,7 +253,7 @@ def friendfinderview(request):
     for i in temp[currentsocialaccount.uid]:
         passableobjects.append(SocialAccount.objects.get(uid=i))
 
-    socaccs.remove(passableobjects)
+    list(socaccs).remove(list(passableobjects))
 
     return render(
         request,
