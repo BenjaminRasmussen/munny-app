@@ -254,7 +254,7 @@ def friendfinderview(request):
         passableobjects.append(SocialAccount.objects.get(uid=i))
     taccs = []
     for i in list(socaccs):
-       if not i.__contains__(list(passableobjects)):
+       if not list(passableobjects).__contains__(i):
            taccs.append(i)
 
 
