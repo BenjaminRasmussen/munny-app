@@ -239,7 +239,7 @@ def friendfinderview(request):
     confobj = []
     for i in temp[currentsocialaccount.uid]:
         for j in temp[i]:
-            if currentsocialaccount == j:
+            if currentsocialaccount.uid == j:
                 if not confobj.__contains__(i):
                     confobj.append(i)
 
