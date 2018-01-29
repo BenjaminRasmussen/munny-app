@@ -131,6 +131,7 @@ class speakerCountry(models.Model):
                                    help_text="URL for anchor links. Can be /src/static/images/country/<COUNTRYNAME>.png",
                                    default="/src/static/images/country/BLANK.png")
     fruitsentiment = models.BooleanField(help_text="Change this sentiment after the fact", default=None)
+    voteEndTime = models.DateTimeField(help_text="Date and time of creation")
 
     list_display = ('id', 'country', 'countryflag', 'fruitsentiment')
     fields = ('country', 'countryflag', 'fruitsentiment',)
@@ -143,6 +144,7 @@ class fruitVote(models.Model):
     voter = models.ForeignKey(munnyuser, related_name="votee")
     votee = models.ForeignKey(speakerCountry, related_name="voter")
     bool = models.BooleanField(help_text="Indicates what the voter voted", default=True)
+    InitDate = models.DateTimeField(auto_now=True, help_text="Date and time of creation")
 
     list_display = ('id', 'voter', 'votee', 'bool')
     fields = ('voter', 'votee', 'bool')
