@@ -262,33 +262,7 @@ def matchesview(request):
             if friendfindermatch.objects.get(matcher=i, matchee=currentsocialaccount.uid):
                 confrimedmatches.append(friendfindermatch.objects.get(matcher=i, matchee=currentsocialaccount.uid))
         except:
-            pass
-
-    # GET ALL FB ACCOUNTS THAT ARE PASSABLE
-    newsocaccs = []
-    try:
-        for i in confrimedmatches:
-            for j in socaccs:
-                if i.matcher==j.uid:
-                    pass
-                else:
-                    newsocaccs.append(j)
-    except:
-        newsocaccs = socaccs
-
-    # Remove own account
-    try:
-        newsocaccs.remove(currentsocialaccount)
-    except:
-        pass
-
-    # from matches to fb users
-    confirmedobjects = []
-    try:
-        for i in confrimedmatches:
-            confirmedobjects.append(SocialAccount.objects.get(uid=i.matcher))
-    except:
-        pass
+            confrimedmatches = ["WTF"]
 
     return render(request,
                   'matches.html',
