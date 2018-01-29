@@ -14,6 +14,14 @@
             margin-top: -116px;
         }
 
+    tr img{
+            border-radius: 50%;
+            border: 2px solid white;
+            width: 64px;
+            height: 64px;
+        }
+
+
     </style>
 {% endblock %}
 
@@ -37,7 +45,7 @@
             {{ card.extra_data.first_name }} {{ cards.extra_data.last_name }}
                 </td>
                 <td>
-                    <a href="https://www.facebook.com/app_scoped_user_id/{{ card.uid }}'/'"><img src="/src/static/images/Icons/64/ADD.png"></a>
+                    <a href="https://www.facebook.com/app_scoped_user_id/{{ card.uid }}/"><img src="/src/static/images/Icons/64/ADD.png"></a>
                 </td>
             </tr>
         {% endfor %}
