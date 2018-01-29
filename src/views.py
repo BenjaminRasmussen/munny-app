@@ -227,34 +227,38 @@ def friendfinderview(request):
     matchmatcheelist = list(friendfindermatch.objects.values_list("matchee", flat=True))
     # Get one way match, then search or other way match.
     # GET ALL FB ACCOUNTS THAT ARE PASSABLE set(a) & set(b)
+
+    # Init user mutuality dict
     newsocaccs = []
     temp = defaultdict(list)
     for delvt, pin in zip(matchmatcherlist, matchmatcheelist):
         if not temp[delvt].__contains__(pin):
             temp[delvt].append(pin)
 
+    # weed out mutuals
     confobj = []
     for i in temp[currentsocialaccount.uid]:
         for j in temp[i]:
             if not confobj.__contains__(j):
                 confobj.append(j)
 
-
-
-
-
-    # Remove own account
+    # delete self from mutual list
     try:
-        newsocaccs.remove(currentsocialaccount)
+        confobj.remove(currentsocialaccount.uid)
     except:
         pass
+
+    # conver to socialaccount
+    passableobjects = []
+    for i in temp[currentsocialaccount.uid]:
+        passableobjects.append(SocialAccount.objects.get(i))
 
     return render(
         request,
         'visual.html',
         context={"users": munnyuser.objects.all(),
                  "user_name": Username,
-                 "facebookaccounts": confobj,
+                 "facebookaccounts": passableobjects,
                  "currentFacebookAccount": currentsocialaccount,
                  "confirmedmatches":  confrimedmatches,
                  "confirmedmatcheslen": confrimedmatches.__len__(),
