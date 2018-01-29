@@ -48,7 +48,7 @@ class munnyuser(models.Model):
     # TODO Scrap groups for choices and groups
     rolegroup_primary = models.CharField(max_length=2, choices=primary_choices)
 
-    MUNID = models.CharField(help_text="This is the google docs jotform id thingy", default="", max_length=20)
+    MUNID = models.CharField(help_text="This is the google docs jotform id thingy", max_length=19)
 
 
     list_display = ('id', 'MUNID', 'Firstname', 'Lastname', 'rolegroup_primary', )
