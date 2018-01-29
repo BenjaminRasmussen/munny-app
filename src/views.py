@@ -208,12 +208,12 @@ def friendfinderview(request):
             if friendfindermatch.objects.get(matcher=i, matchee=str(currentsocialaccount.uid)):
                 confrimedmatches.append(friendfindermatch.objects.get(matcher=i, matchee=str(currentsocialaccount.uid)))
         except:
-
+            pass
     # GET ALL FB ACCOUNTS THAT ARE PASSABLE
     newsocaccs = []
     for i in socaccs:
         try:
-            for j in matchlist:
+            for j in confrimedmatches:
                 if i.uid == j.matcher or currentsocialaccount.uid == i.uid:
                     pass
                 else:
