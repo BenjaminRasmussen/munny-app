@@ -188,7 +188,7 @@
 
                                                 <!-- TODO Make this take facebook into and an actual link (not button) -->
                                                 <a id="addfirendbutton" rel="external" onclick="test('{{ cards.uid }}')"
-                                                   href="javascript:test('{{ cards.uid }}')">
+                                                   href="javascript:test('{{ cards.uid }}'); e.preventDefault();">
                                                     <img id="buttonforadding{{ cards.uid }}"
                                                          src="/src/static/images/Icons/64/ADD.png"></a>
                                             </div>
@@ -215,7 +215,7 @@
                                         display: block;"><img id="rightpic" src="{{ cards.get_avatar_url }}"></div>
                                 </div>
                                 <div id="over-bot">
-                                    <button id="keep-going" onclick="off('{{ cards }}');e_preventDefault()">Keep Playing!</button>
+                                    <button id="keep-going" onclick="off('{{ cards }}')">Keep Playing!</button>
                                 </div>
                             </div>
                         </div>
