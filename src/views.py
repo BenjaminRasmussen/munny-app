@@ -235,7 +235,7 @@ def friendfinderview(request):
         if not temp[delvt].__contains__(pin):
             temp[delvt].append(pin)
 
-    # weed out mutuals TODO THIS DOSENT WEEK OUT MUTUALS; IT EXTRACTS THE SUBARRAY
+    # weed out mutuals TODO THIS DOSENT WEEK OUT MUTUALS; IT EXTRACTS THE SUBARRAY continue confobj down
     confobj = []
     for i in temp[currentsocialaccount.uid]:
         for j in temp[i]:

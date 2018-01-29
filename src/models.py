@@ -23,21 +23,36 @@ class Munnygroup(models.Model):
 
 
 class munnyuser(models.Model):
-    # TODO ADD PICTURE URL
+    ADSTAFF = "AD"
+    EXEC = "EX"
+    STUDENTOFFICER = "SO"
+    PRESS = "PR"
+    DELEGATE = "DE"
+    AMBASSADOR = "AM"
+    JUDGEADVOCATE = "JA"
+    JUDGE = "JU"
+    primary_choices = ((ADSTAFF, 'Adstaff'),
+                       (EXEC, 'Executive Team'),
+                       (STUDENTOFFICER, 'Student Officer'),
+                       (PRESS, 'Press'),
+                       (DELEGATE, 'Delegate'),
+                       (AMBASSADOR, 'Ambassador'),
+                       (JUDGEADVOCATE, 'Judge & Advocate'),
+                       (JUDGE, 'Judge'),)
+
+# TODO ADD PICTURE URL
     id = models.AutoField(auto_created=True, primary_key=True, unique=True, serialize=False, verbose_name='ID')
     Firstname = models.CharField(help_text="First name, (only 1, no spaces!)", max_length=20)
     Lastname = models.CharField(help_text="Last name, (only 1, no spaces!)", max_length=20)
     # FACEBOOKURL = models.
     # TODO Scrap groups for choices and groups
-    rolegroup_primary = models.ForeignKey(Munnygroup, related_name="rolegroup_secondary", default="", )
-    rolegroup_secondary = models.ForeignKey(Munnygroup, related_name="rolegroup_primary", default="", )
+    rolegroup_primary = models.CharField(max_length=2, choices=primary_choices)
 
     MUNID = models.CharField(help_text="This is the google docs jotform id thingy", default="", max_length=20)
 
-    FACEBOOKLINK = models.CharField(help_text="Facebbok ID", max_length=100)
 
-    list_display = ('id', 'MUNID', 'Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary', 'FACEBOOKLINK',)
-    fields = ('Firstname', 'Lastname', 'rolegroup_primary', 'rolegroup_secondary', 'MUNID', 'FACEBOOKLINK',)
+    list_display = ('id', 'MUNID', 'Firstname', 'Lastname', 'rolegroup_primary', )
+    fields = ('Firstname', 'Lastname', 'rolegroup_primary', 'MUNID', )
 
     def __str__(self):
         return str(self.MUNID)
