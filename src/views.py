@@ -205,8 +205,8 @@ def friendfinderview(request):
     matchlist = list(friendfindermatch.objects.filter(matcher__iexact=currentsocialaccount))
     for i in matchlist:
         try:
-            if friendfindermatch.objects.get(matcher=i, matchee=currentsocialaccount):
-                confrimedmatches.append(friendfindermatch.objects.get(matcher=i, matchee=currentsocialaccount))
+            if friendfindermatch.objects.get(matcher=i.uid, matchee=currentsocialaccount.uid):
+                confrimedmatches.append(friendfindermatch.objects.get(matcher=i.uid, matchee=currentsocialaccount.uid))
         except:
             confrimedmatches = ["im broken"]
 
