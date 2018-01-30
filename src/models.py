@@ -133,7 +133,7 @@ class speakerCountry(models.Model):
     fruitsentiment = models.BooleanField(help_text="Change this sentiment after the fact", default=None)
     voteEndTime = models.DateTimeField(auto_now=True)
 
-    list_display = ('id', 'country', 'countryflag', 'fruitsentiment', 'voteEndTime')
+    list_display = ('id', 'country', 'countryflag', 'fruitsentiment')
     fields = ('country', 'countryflag', 'fruitsentiment', 'voteEndTime',)
 
     def __str__(self):
