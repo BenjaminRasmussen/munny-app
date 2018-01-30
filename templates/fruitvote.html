@@ -80,6 +80,8 @@
         }
 
         .button {
+            margin: 7px;
+
             background-color: white;
             border: 2px solid #FFB757;
             color: black;
@@ -102,6 +104,7 @@
         }
 
         table {
+            margin: 7px;
             width: 100%;
             table-layout: auto;
 
@@ -134,8 +137,14 @@
 {% endblock %}
 
 {% block content %}
-    <h1 style="text-align: center;">Fruitful form for voting</h1>
-    <p>Rules are as follows:.... <br></p>
+    <h1 style="text-align: center;">Fruitful Or Not</h1>
+    <p style="margin: 7px;">Rules are as follows: For quite some time the word "fruitful" has been an extremely frequent word in political
+        speeches. We cant seem to find out quite when the word first began to gain traction in such speeches. But
+        this year at MUNNY we have made a competition out of guessing whether a speaker is going to say fruitful
+        in his speech or not; hence the name 'Fruitful or not'. Below is a form for guessing. The form remembers your
+        previous votes so dont worry if you dont it out completely on the first try. You can always come back later.
+        Voting closes at 12:00 and the leaderboard will be displayed on this url for better or worse after that.
+        Try not to finish last and good luck!<br></p>
     <div class="fruitform" style="padding: 5px;">
         <form action="" method="POST">
             {% csrf_token %}
@@ -177,7 +186,7 @@
                     </tr>
                 {% endfor %}
             </table>
-            <input class="button" type="submit">
+            <input class="button" type="submit" value="Submit" >
         </form>
     </div>
 
