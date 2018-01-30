@@ -20,16 +20,20 @@
 
         .reply-container textarea {
             width: 75%;
-            height: 150px;
+            height: 50px;
             padding: 12px 20px;
             box-sizing: border-box;
             border: 2px solid #AAAAAA;
-            border-radius: 4px;
             background-color: #f8f8f8;
             resize: none;
             text-align: left;
             display: block;
             float: left;
+            border-top-right-radius: 5px !important;
+            border-bottom-right-radius: 5px !important;
+            border-radius: 30px !important;
+
+
         }
 
         .reply-container input {
@@ -46,6 +50,9 @@
             box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             width: 25%;
             height: 50px;
+            border-top-right-radius: 5px !important;
+            border-bottom-right-radius: 5px !important;
+            border-radius: 30px !important;
 
         }
 
@@ -55,9 +62,50 @@
             color: white;
             box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
         }
-        .credits-wrapper{
+
+        .credits-wrapper {
             position: relative !important;
-            top: 50px!important;
+            top: 50px !important;
+        }
+
+        .Message-box ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .Message-box ul li {
+            display: inline-block;
+            clear: both;
+            padding: 5px;
+            border-radius: 30px;
+            margin-bottom: 2px;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        .Message-box .ticket {
+            background: #eee;
+            float: left;
+        }
+
+        .Message-box .reply {
+            width: 80%;
+            float: right;
+            background: #0084ff;
+            color: #fff;
+        }
+
+        .Message-box .ticket + .reply {
+            border-bottom-right-radius: 5px;
+        }
+
+        .Message-box .reply + .reply {
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        .Message-box .reply:last-of-type {
+            border-bottom-right-radius: 30px;
         }
     </style>
 {% endblock %}
@@ -72,36 +120,46 @@
     <div class="Message-box">
 
         <h2 style="text-align: center">Tickets:</h2>
-
-        <!-- Tickets with a reply form attatched -->
-        {% for ticket in tickets %}
-            <form action="" method="post">
-                {% csrf_token %}
-                {{ form }}
-                <h3 style="border-top: 2px black solid">{{ ticket.Title }}</h3>
-                <p>"{{ ticket.Text }}"</p>
-                <p style="text-align: right">-{{ ticket.Writer.getfullname }} from {{ ticket.Writer.rolegroup_primary }} on {{ ticket.InitDate }}</p>
+        <ul>
+            <!-- Tickets with a reply form attatched -->
+            {% for ticket in tickets %}
+                <li class="ticket">
+                    <h3>{{ ticket.Title }}</h3>
+                    <p>"{{ ticket.Text }}"</p>
+                    <p style="text-align: right">-{{ ticket.Writer.getfullname }}
+                        on {{ ticket.InitDate }}</p>
+                </li>
 
                 <!-- Renders Replies -->
-                {% for reply in ticketreplies %}
+                <li class="reply">
+
+            {% for reply in ticketreplies %}
                     {% if ticket.id == reply.Ticket.id %}
-                        <div style="border: 1px black solid">
-                        <h3 style="text-align: left">{{ reply.Writer.getfullname }} wrote:</h3>
-                        <p>{{ reply.Text }}. <br></p> <p style="text-align: right">Date:{{ reply.InitDate }}</p>
-                        </div>
+                            <div>
+                                <h3 style="text-align: left">{{ reply.Writer.getfullname }} wrote:</h3>
+                                <p>{{ reply.Text }}. <br></p>
+                                <p style="text-align: right">Date:{{ reply.InitDate }}</p>
+                            </div>
+
                     {% endif %}
                 {% endfor %}
 
                 <div class="reply-container">
-                    <input class="ticketobject" type="hidden" name="ticketobject" id="{{ ticket.id }}"
-                           value="{{ ticket }}">
-                    <textarea class="reply" id="reply" type="text" name="reply" value="{{ reply }}"
-                              placeholder="Reply visible to the writer of the ticket." style="height: 50px;"
-                              required></textarea>
-                    <input class="button" type="submit" value="Submit">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{ form }}
+                        <input class="ticketobject" type="hidden" name="ticketobject" id="{{ ticket.id }}"
+                               value="{{ ticket }}">
+                        <textarea style="width: 80%;" class="reply" id="reply" type="text" name="reply" value="{{ reply }}"
+                                  placeholder="Reply visible to the writer of the ticket." style="height: 50px !important;"
+                                  required></textarea>
+                        <input style="width: 20%; height: 50px;" class="button" type="submit" value="Submit">
+                    </form>
                 </div>
-            </form>
-        {% endfor %}
+                </li>
+            {% endfor %}
+
+        </ul>
     </div>
 
 {% endblock %}

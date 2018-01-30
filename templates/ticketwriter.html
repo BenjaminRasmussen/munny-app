@@ -22,6 +22,45 @@
             position: relative !important;
             top: 50px!important;
         }
+
+        .Message-box ul{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .Message-box ul li{
+            display:inline-block;
+            clear: both;
+            padding: 5px;
+            border-radius: 30px;
+            margin-bottom: 2px;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        .Message-box .ticket{
+            background: #eee;
+            float: left;
+        }
+
+        .Message-box .reply{
+            float: right;
+            background: #0084ff;
+            color: #fff;
+        }
+
+        .Message-box .ticket + .reply{
+            border-bottom-right-radius: 5px;
+        }
+
+        .Message-box .reply + .reply{
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        .Message-box .reply:last-of-type {
+            border-bottom-right-radius: 30px;
+        }
     </style>
 {% endblock %}
 
@@ -49,28 +88,37 @@
 
     <div class="Message-box">
         <h2 style="text-align: center">Your tickets:</h2>
+        <ul>
 
         {% for ticket in tickets %}
-            <h3 style="border-top: 2px black solid">{{ ticket.Title }}</h3>
-            <p>"{{ ticket.Text }}"</p>
-            <p>-{{ ticket.Writer.getfullname }} on {{ ticket.InitDate }}</p>
+            <li class="ticket">
+            <h3 style="text-align: left">{{ ticket.Title }}</h3>
+            <p style="text-align: left">"{{ ticket.Text }}"</p>
+            <p style="text-align: right">-{{ ticket.Writer.getfullname }} on {{ ticket.InitDate }}</p>
             {% if ticket in ticketreplies %}
                 {% for reply in ticketreplies %}
                 {% endfor %}
             {% endif %}
-
+            </li>
             <!-- Renders Replies -->
+
             {% for reply in ticketreplies %}
                 {% if ticket.id == reply.Ticket.id %}
-                    <h2> Reply: </h2>
-                    <h3>{{ reply.Writer.getfullname }} wrote:</h3>
-                    <p>{{ reply.Text }}. <br></p> <p style="text-align: right">Date:{{ reply.InitDate }}</p>
+                    <li class="reply">
+                        <h3 style="text-align: left">{{ reply.Writer.getfullname }} wrote:</h3>
+                    <p style="text-align: left">{{ reply.Text }}. </p><p style="text-align: right">Date:{{ reply.InitDate }}</p>
+                    </li>
+
                 {% endif %}
             {% endfor %}
-
         {% endfor %}
-        <div style="border-bottom: 2px black solid"></div>
-
+        </ul>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
 {% endblock %}

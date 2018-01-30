@@ -161,25 +161,24 @@ def ticketview(request):
 
     # TODO clean this section with role choices instead of group models.
 
-
-    if request.method == "GET" and curUser.rolegroup_primary==munnyuser.ADSTAFF:
+    if request.method == "GET" and curUser.rolegroup_primary == munnyuser.ADSTAFF:
         tickets = ticket.objects.all().order_by('InitDate').reverse()
         return render(request,
-                          'ticketreader.html',
-                          context={"user_name": Username,
-                                   "tickets": tickets,
-                                   "ticketreplies": ticketreplies,
-                                   },
-                          )
+                      'ticketreader.html',
+                      context={"user_name": Username,
+                               "tickets": tickets,
+                               "ticketreplies": ticketreplies,
+                               },
+                      )
 
     else:
         return render(
             request,
             'ticketwriter.html',
             context={"user_name": Username,
-                        "tickets": tickets,
-                        "ticketreplies": ticketreplies,
-                        },
+                     "tickets": tickets,
+                     "ticketreplies": ticketreplies,
+                     },
         )
 
 
