@@ -258,7 +258,7 @@
                                         },
                                         success: function (json) {
                                             on(json.matchee);
-                                            document.getElementById('buttonforadding' + matchee).src = "/src/static/images/Checkmark.png";
+                                            document.getElementById('buttonforadding' + matchee).src ="/src/static/images/Checkmark.png";
                                             document.getElementById('leftpic').src = "{{ currentFacebookAccount.get_avatar_url }}";
                                             document.getElementById('addbutton' + matchee).href = "https://www.facebook.com/app_scoped_user_id/" + matchee + "/";
                                             document.getElementById('rightpic').src = "{{ cards.get_avatar_url }}";
@@ -278,7 +278,6 @@
 
                             $(document).on('touchstart', '#addfirendbutton', function(e){
                                  test($("#addfirendbutton").getAttribute("data-info"));
-
                             });
 
 
