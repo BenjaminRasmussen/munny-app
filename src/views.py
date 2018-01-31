@@ -305,7 +305,7 @@ def matchesview(request):
     for delvt, pin in zip(matchmatcherlist, matchmatcheelist):
         if not temp[delvt].__contains__(pin):
             temp[delvt].append(pin)
-
+    print(temp)
     # weed out mutuals
     confobj = []
     for i in temp[currentsocialaccount.uid]:
