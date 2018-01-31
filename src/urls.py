@@ -12,7 +12,7 @@ urlpatterns = [
 
     # Content pages from nav bar
     url(r'^fruit/', views.fruit, name='fruit'),
-    url(r'^fruitleader/', views.fruitleader, name='fruitleader'),
+    #url(r'^fruitleader/', views.fruitleader, name='fruitleader'),
     url(r'^ticketview/', views.ticketview, name='ticketview'),
     url(r'^sessions/', views.sessionsview, name='sessions'),
     url(r'^missingloginpage/', views.missingloginpage, name="missingloginpage"),
