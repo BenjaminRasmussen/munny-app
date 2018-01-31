@@ -312,7 +312,7 @@ def matchesview(request):
         for j in temp[i]:
             if not confobj.__contains__(j):
                 confobj.append(j)
-
+    print(confobj)
     # delete self from mutual list
     try:
         confobj.remove(currentsocialaccount.uid)
