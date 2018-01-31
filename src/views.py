@@ -304,12 +304,13 @@ def matchesview(request):
     for delvt, pin in zip(matchmatcherlist, matchmatcheelist):
         if not temp[delvt].__contains__(pin):
             temp[delvt].append(pin)
-    print(type(temp[0][0]))
+
     # weed out mutuals
     confobj = []
     for i in temp[currentsocialaccount.uid]:
         for j in temp[i]:
             if not confobj.__contains__(j):
+                print(type(j))
                 confobj.append(j)
     print(confobj)
     # delete self from mutual list
