@@ -328,7 +328,7 @@ def matchesview(request):
         passableobjects.remove(currentsocialaccount)
     except:
         pass
-
+    print(passableobjects)
     return render(request,
                   'matches.html',
                   context={"users": munnyuser.objects.all(),
