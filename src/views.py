@@ -234,7 +234,7 @@ def friendfinderview(request):
     newsocaccs = []
     temp = defaultdict(list)
     for delvt, pin in zip(matchmatcherlist, matchmatcheelist):
-        if not temp[delvt].__contains__(pin):
+        if not temp[delvt].__contains__(pin) and delvt != pin:
             temp[delvt].append(pin)
 
     # weed out mutuals TODO THIS DOSENT WEEK OUT MUTUALS; IT EXTRACTS THE SUBARRAY continue confobj down
