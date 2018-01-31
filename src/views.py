@@ -251,9 +251,10 @@ def friendfinderview(request):
     except:
         pass
 
+
     # conver to socialaccount
     passableobjects = []
-    for i in temp[currentsocialaccount.uid]:
+    for i in confobj:
         passableobjects.append(SocialAccount.objects.get(uid=i))
     taccs = []
 
@@ -277,7 +278,7 @@ def friendfinderview(request):
                  "facebookaccounts": taccs,
                  "currentFacebookAccount": currentsocialaccount,
                  "confirmedmatches": passableobjects,
-                 "confirmedmatcheslen": passableobjects.__len__(),
+                 "confirmedmatcheslen": confobj.__len__(),
                  }
     )
 
