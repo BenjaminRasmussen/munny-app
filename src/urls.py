@@ -11,7 +11,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     # Content pages from nav bar
-    url(r'^fruit/', views.fruitleader, name='fruit'),
+    url(r'^fruit/', views.fruit, name='fruit'),
     #url(r'^fruitleader/', views.fruitleader, name='fruitleader'),
     url(r'^ticketview/', views.ticketview, name='ticketview'),
     url(r'^sessions/', views.sessionsview, name='sessions'),
