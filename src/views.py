@@ -33,6 +33,7 @@ def fruit(request):
         return HttpResponseRedirect('/missingloginpage/')
 
     curUser = munnyuser.objects.get(MUNID=request.session.get('munnyid'))
+    """
     if request.method == "POST":
         # Get some of those answers! System works like this. POST returns a list of countries.
         # If a country is in that list. then the person voted fruitful for said country. GL!
@@ -58,7 +59,7 @@ def fruit(request):
                       context={"user_name": Username,
                                "fruit_object": fruitPerson.objects.get(userobject=munnyuser.objects.get(MUNID=userid))},
                       )
-
+    """
     # Return default values
     votes = fruitVote.objects.filter(voter=curUser).order_by('votee_id')
     countrydict = {}
