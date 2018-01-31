@@ -126,7 +126,7 @@ class fruitPerson(models.Model):
 
 
 class speakerCountry(models.Model):
-    country = models.CharField(max_length=35, help_text="Name of the conutry speaking right here")
+    country = models.CharField(max_length=45, help_text="Name of the conutry speaking right here")
     countryflag = models.CharField(max_length=100,
                                    help_text="URL for anchor links. Can be /src/static/images/country/<COUNTRYNAME>.png",
                                    default="/src/static/images/country/BLANK.png")
