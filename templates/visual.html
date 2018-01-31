@@ -278,7 +278,7 @@
 
                             $(document).on('touchstart', '#addfirendbutton', function(e){
                                  test($("#addfirendbutton").getAttribute("data-info"));
-                                e.this.src="/src/static/images/Checkmark.png";
+                                $("buttonforadding").parent(e.this).src="/src/static/images/Checkmark.png";
                             });
 
 
