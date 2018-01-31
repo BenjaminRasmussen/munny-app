@@ -1,5 +1,7 @@
 from collections import defaultdict
 
+from allauth.socialaccount.models import SocialAccount
+
 from src.models import friendfindermatch
 
 matchmatcherlist = list(friendfindermatch.objects.values_list("matcher", flat=True))
@@ -9,6 +11,20 @@ currentsocialaccount = "2451520528295457"
 # GET ALL FB ACCOUNTS THAT ARE PASSABLE set(a) & set(b)
 
 # Init user mutuality dict
+# Get number of mutual matches
+
+socaccs = SocialAccount.objects.all()
+currentsocialaccount = SocialAccount.objects.get(user=currentsocialaccount)
+
+
+confirmedobjects = []
+matchobjectlist = friendfindermatch.objects.all()
+for i in matchobjectlist:
+    try:
+        confirmedobjects.append(friendfindermatch.objects.get(matcher=i.matchee, matchee=i.matcher))
+    except:
+        pass
+
 newsocaccs = []
 temp = defaultdict(list)
 for delvt, pin in zip(matchmatcherlist, matchmatcheelist):
@@ -47,6 +63,8 @@ try:
     passableobjects.remove(currentsocialaccount)
 except:
     pass
+
+"""
 return render(
     request,
     'visual.html',
@@ -58,3 +76,4 @@ return render(
              "confirmedmatcheslen": passableobjects.__len__(),
              }
 )
+"""
