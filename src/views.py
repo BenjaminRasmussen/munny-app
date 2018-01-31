@@ -198,7 +198,8 @@ def friendfinderview(request):
     if not userid == "NOT LOGGED IN":
         Username = munnyuser.objects.get(MUNID=userid).getfullname()
     else:
-        Username = "NOT LOGGED IN"
+        return HttpResponseRedirect('/missingloginpage/')
+
     socaccs = SocialAccount.objects.all()
     currentsocialaccount = SocialAccount.objects.get(user=request.user)
 
@@ -288,6 +289,8 @@ def matchesview(request):
     userid = request.session.get('munnyid', 'NOT LOGGED IN')
     if not userid == "NOT LOGGED IN":
         Username = munnyuser.objects.get(MUNID=userid).getfullname()
+    else:
+        return HttpResponseRedirect('/missingloginpage/')
 
     socaccs = SocialAccount.objects.all()
     currentsocialaccount = SocialAccount.objects.get(user=request.user)
