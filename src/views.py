@@ -437,7 +437,7 @@ def friendfinderajaxcall(request):
     response_data = {}
     try:
         if friendfindermatch.objects.get(matcher__exact=matchee,
-                                                 matchee__exact=matcher, ):
+                                                matchee__exact=matcher, ):
             response_data['matchee'] = str(fmatchee)
             response_data['getMatchStatus'] = "true"
             print(response_data)
