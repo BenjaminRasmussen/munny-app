@@ -188,7 +188,7 @@
 
                                                 <!-- TODO Make this take facebook into and an actual link (not button) -->
                                                 <a id="addfirendbutton" rel="external" ontouchstart="test('{{ cards.uid }}')" onclick="test('{{ cards.uid }}')"
-                                                   href="javascript:test('{{ cards.uid }}'); preventDefault();">
+                                                   href="javascript:test('{{ cards.uid }}'); preventDefault();" data-info="{{ cards.uid }}">
                                                     <img id="buttonforadding{{ cards.uid }}"
                                                          src="/src/static/images/Icons/64/ADD.png"></a>
                                             </div>
@@ -276,9 +276,10 @@
                             }
 
 
-                            /* $(document).on('click', '#addfirendbutton', function(e){
-                                 $("#addfirendbutton").trigger('click');
-                             }); */
+                            $(document).on('click', '#addfirendbutton', function(e){
+                                 test($("#addfirendbutton").getAttribute("data-info"));
+
+                            });
 
 
                         </script>
