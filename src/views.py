@@ -309,6 +309,7 @@ def matchesview(request):
     confobj = []
     for i in temp[currentsocialaccount.uid]:
         for j in temp[i]:
+            print("temp sublist i:"+ str(i) + str(temp[i]))
             if not confobj.__contains__(j):
                 confobj.append(j)
     print(confobj)
