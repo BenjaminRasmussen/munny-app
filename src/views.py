@@ -241,10 +241,10 @@ def friendfinderview(request):
     confobj = []
     for i in temp[currentsocialaccount.uid]:
         for j in temp[i]:
-            if currentsocialaccount.uid == j:
-                if not confobj.__contains__(i):
-                    confobj.append(i)
-
+            print("temp sublist i:"+ str(i) + str(temp[i]))
+            if not confobj.__contains__(j):
+                confobj.append(j)
+    print(confobj)
     # delete self from mutual list
     try:
         confobj.remove(currentsocialaccount.uid)
