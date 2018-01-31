@@ -298,14 +298,13 @@ def matchesview(request):
     matchmatcheelist = list(friendfindermatch.objects.values_list("matchee", flat=True))
     # Get one way match, then search or other way match.
     # GET ALL FB ACCOUNTS THAT ARE PASSABLE set(a) & set(b)
-    print(type(currentsocialaccount.uid))
     # Init user mutuality dict
     newsocaccs = []
     temp = defaultdict(list)
     for delvt, pin in zip(matchmatcherlist, matchmatcheelist):
         if not temp[delvt].__contains__(pin):
             temp[delvt].append(pin)
-    print(temp)
+    print(type(temp[0][0]))
     # weed out mutuals
     confobj = []
     for i in temp[currentsocialaccount.uid]:
