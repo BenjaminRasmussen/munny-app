@@ -302,7 +302,7 @@ def matchesview(request):
     newsocaccs = []
     temp = defaultdict(list)
     for delvt, pin in zip(matchmatcherlist, matchmatcheelist):
-        if not temp[delvt].__contains__(pin):
+        if not temp[delvt].__contains__(pin) and delvt != pin:
             temp[delvt].append(pin)
     print(temp)
     # weed out mutuals
