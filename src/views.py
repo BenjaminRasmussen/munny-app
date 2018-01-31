@@ -321,7 +321,7 @@ def matchesview(request):
 
     # conver to socialaccount
     passableobjects = []
-    for i in temp[currentsocialaccount.uid]:
+    for i in confobj:
         passableobjects.append(SocialAccount.objects.get(uid=i))
 
     try:
