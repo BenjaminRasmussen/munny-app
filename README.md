@@ -1,2 +1,2 @@
 # munny-app
-# Very borong readme.
+# Very boring readme.
