@@ -1,2 +1,2 @@
-# Brownian-Motion-Simulator
 # munny-app
+# Very borong readme.
